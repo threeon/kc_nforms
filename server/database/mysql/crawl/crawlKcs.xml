@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="crawlKcs">  
+
+  <insert id="insertKcsExi">
+    <foreach collection="dataList" item="d" separator=";">
+    insert into kcs_exi (TIME, META1, META2, DATA_VALUE, JD_VAR_R, CYCLE, CREATE_DT)
+    values 
+      (#{d.TIME}, #{d.META1}, #{d.META2}, #{d.DATA_VALUE}, #{d.JD_VAR_R}, #{d.CYCLE}, NOW())
+    on duplicate key update
+      DATA_VALUE=VALUES(DATA_VALUE),
+      JD_VAR_R=VALUES(JD_VAR_R),
+      CYCLE=VALUES(CYCLE),
+      UPDATE_DT=NOW()
+    </foreach>
+  </insert>
+
+  <insert id="insertKcsExc">
+    <foreach collection="dataList" item="d" separator=";">
+    insert into kcs_exc (TIME, META1, META2, DATA_VALUE, JD_VAR_R, CYCLE, CREATE_DT)
+    values 
+      (#{d.TIME}, #{d.META1}, #{d.META2}, #{d.DATA_VALUE}, #{d.JD_VAR_R}, #{d.CYCLE}, NOW())
+    on duplicate key update
+      DATA_VALUE=VALUES(DATA_VALUE),
+      JD_VAR_R=VALUES(JD_VAR_R),
+      CYCLE=VALUES(CYCLE),
+      UPDATE_DT=NOW()
+    </foreach>
+  </insert>
+
+  <insert id="insertKcsImi">
+    <foreach collection="dataList" item="d" separator=";">
+    insert into kcs_imi (TIME, META1, META2, DATA_VALUE, JD_VAR_R, CYCLE, CREATE_DT)
+    values 
+      (#{d.TIME}, #{d.META1}, #{d.META2}, #{d.DATA_VALUE}, #{d.JD_VAR_R}, #{d.CYCLE}, NOW())
+    on duplicate key update
+      DATA_VALUE=VALUES(DATA_VALUE),
+      JD_VAR_R=VALUES(JD_VAR_R),
+      CYCLE=VALUES(CYCLE),
+      UPDATE_DT=NOW()
+    </foreach>
+  </insert>
+
+  <insert id="insertKcsImc">
+    <foreach collection="dataList" item="d" separator=";">
+    insert into kcs_imc (TIME, META1, META2, DATA_VALUE, JD_VAR_R, CYCLE, CREATE_DT)
+    values 
+      (#{d.TIME}, #{d.META1}, #{d.META2}, #{d.DATA_VALUE}, #{d.JD_VAR_R}, #{d.CYCLE}, NOW())
+    on duplicate key update
+      DATA_VALUE=VALUES(DATA_VALUE),
+      JD_VAR_R=VALUES(JD_VAR_R),
+      CYCLE=VALUES(CYCLE),
+      UPDATE_DT=NOW()
+    </foreach>
+  </insert>
+
+  <insert id="insertKcsTrbal">
+    <foreach collection="dataList" item="d" separator=";">
+    insert into kcs_trbal (TIME, META1, META2, DATA_VALUE, JD_VAR_R, CYCLE, CREATE_DT)
+    values 
+      (#{d.TIME}, #{d.META1}, #{d.META2}, #{d.DATA_VALUE}, #{d.JD_VAR_R}, #{d.CYCLE}, NOW())
+    on duplicate key update
+      DATA_VALUE=VALUES(DATA_VALUE),
+      JD_VAR_R=VALUES(JD_VAR_R),
+      CYCLE=VALUES(CYCLE),
+      UPDATE_DT=NOW()
+    </foreach>
+  </insert>
+</mapper>

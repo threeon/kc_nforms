@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">  
+    <!--
+    * 계정관리
+    -->
+    <select id="selectAdminList">
+      SELECT *
+        FROM tm_admin
+        ORDER BY create_date asc
+    </select>
+
+    <select id="selectAdminCheck">
+      SELECT *
+        FROM tm_admin
+      WHERE user_id = #{user_id}
+        AND password = #{password}
+    </select>
+
+    <insert id="insertMember">
+      INSERT INTO tm_admin (user_id, password, user_level, user_name) 
+      VALUES (#{user_id}, #{password}, #{user_level}, #{user_name})
+    </insert>
+
+    <update id="updateMember">
+      UPDATE tm_admin SET 
+        password = #{password},
+        user_level = #{user_level},
+        user_name = #{user_name}
+      WHERE user_id = #{user_id}
+    </update>
+
+    <delete id="deleteMember">
+      DELETE FROM tm_admin
+      WHERE user_id = #{user_id}
+    </delete>
+</mapper>

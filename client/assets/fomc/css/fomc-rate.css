@@ -1,0 +1,538 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://use.fontawesome.com/releases/v5.2.0/css/all.css');
+
+
+/* reset */
+/*body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, button {margin:0; padding:0;}*/
+* {box-sizing:border-box;}
+button {outline:none;}
+fieldset, img {border:0 none;}
+dl, ul, ol, menu, li {list-style:none;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after {content:''; content:none;}
+input, select, textarea, button {vertical-align:middle; font-size:100%;}
+button {border:0 none; background-color:transparent; cursor:pointer;}
+table {border-collapse:collapse; border-spacing:0; width:100%;}
+body {-webkit-text-size-adjust:none;} /* 뷰트 변환시 폰트크기 자동확대 방지. */
+
+/* vuetify reset */
+.v-application {font-family:"Nanum Gothic", sans-serif !important;  line-height:1.2 !important;}
+.v-application ul {padding-left:0px !important;}
+.v-application p {margin-bottom:0;}
+.theme--light.v-application {background: #FFFFFF; color:#000;}
+
+a:link, a:active, a:hover, a:visited {text-decoration:none; border:0; outline:0;}
+address, caption, cite, code, dfn, em, var {font-style:normal; font-weight:normal;}
+
+body {font-family:"Nanum Gothic", sans-serif; font-size:12px; word-break:keep-all;}
+
+/*.wrap {min-width:870px; max-width:870px; min-height:860px;}*/
+.wrap_fomcpdf {min-width:1200px; max-width:1200px; min-height:860px;}
+.header {padding:8px 15px 15px; min-width:870px; height:36px;}
+.header > ul li {float:left; margin-right:1px;}
+.header > ul li a {display:block; height:28px; line-height:13px; padding:8px 12px 7px; border-top-left-radius:2px; border-top-right-radius:2px; font-weight:bold;}
+.header_rgt {float:right; margin-top:-2px;}
+.header button {height:24px; padding:0 10px; border-radius:3px; font-size:12px;}
+
+.contents {padding:13px 15px 4px;}
+
+h2 {margin-top:5px; font-size:20px;}
+/* h2.txt_cnt {font-weight:600;} */
+.footer {position:absolute; bottom:10px; left:0; padding:0 10px; width:870px; font-family:"Inter"; font-weight:400;}
+.footer .footnote {float:left;}
+.update {float:right; text-align:right; font-size:11px;}
+
+/* Table */
+.table_area {position:relative;}
+.table_scroll {overflow-x:hidden; overflow-y:scroll;}
+.table_scroll table {table-layout:fixed;}
+.table_scroll thead tr {position:absolute; top:0; left:0;}
+
+.tbl th, .tbl td {padding:0 5px; vertical-align:middle;}
+.tbl th {text-overflow:ellipsis; overflow:hidden; white-space:nowrap;}
+.tbl td {height:29px; line-height:100%; text-align:center;}
+.tbl th:first-child, .tbl td:first-child {border-left:none!important;}
+.tbl tbody th:last-child, .tbl tbody td:last-child {border-right:none!important;}
+.tbl.no_hover tbody tr:hover {background:none !important; font-weight:normal;}
+.lower {float:left; padding-left:5px;}
+.upper {float:right; padding-right:5px;}
+
+.con_top .tbl th {height:26px;}
+.con_top .scroll {padding-top:26px;}
+
+.tbl2 {font-size:14px; border-collapse:separate;}
+.tbl2 thead th {height:43px;}
+.tbl2 tbody td {height:41px; text-align:center; font-weight:400;}
+.tbl2 thead th:last-child , .tbl2 tbody td:last-child {border-right:none;}
+
+
+/* popup */
+.pop {padding:12px 15px 15px; border-radius:5px; text-align:left; font-size:12px; font-weight:400; line-height:1.4; overflow:hidden;z-index:100;}
+.btn_w_close {position:absolute; top:12px; right:15px; width:13px; height:13px;}
+
+    /* 소수정보 */
+    .minority {position:absolute; margin-top:3px; right:7px; width:750px;}
+    .minority p {overflow:hidden; width:98%; font-size:12px; line-height:1.6;}
+
+    /* Tooltip */
+    .tooltip {position:absolute; margin-top:10px; width:500px;}
+    .tooltip p, .tooltip ul {margin-top:8px;}
+    
+
+.opinion td:first-child {border-right:none!important;}
+.opinion td:nth-child(2) {border-left:none;}
+
+.btn_comment, .btn_question {display:inline-block;}
+.footnote {font-family:"Inter"; font-weight:500; padding:5px 0 0 7px; font-size:11px; color:#000;}
+.fon11 {font-size:11px;}
+.fon12 {font-size:11px;}
+
+
+.con_bottom {margin-top:7px; padding:10px 15px;}
+.con_bottom .s_title {height:30px;}
+.con_bottom .s_title h3 {display:inline-block; font-size:17px; font-weight:bold;}
+.con_bottom .btnset {float:right; margin-bottom:7px;}
+.con_bottom .btn {display:block; height:26px; line-height:26px; font-size:11px; padding:0 10px; border-radius:2px;}
+.con_bottom .chart_area {margin-top:0px;}
+.con_bottom .scroll {padding-top:29px;}
+.con_bottom .tbl th {height:30px;}
+/* #policy_table {display:none;} */
+
+
+/* Members */
+.board_of_governors .lst_frame {display:flex; flex-direction:row; flex-wrap:wrap; justify-content:center; margin:10px auto 0; width:680px;}
+.board_of_governors .person_info {width:170px; height:170px;}
+.board_of_governors .person_info:first-of-type {margin-left:80px;}
+.board_of_governors .person_info:nth-of-type(3) {margin-right:80px;}
+
+.frb_president .lst_frame {display:flex; flex-direction:row; flex-wrap:wrap; justify-content:center; margin-top:10px;}
+.frb_president .person_info {width:140px; height:158px;}
+.frb_president .tit {position:relative; padding:10px 0 11px;}
+.frb_president .mark {position:absolute; top:20px; left:8px; font-family:"Inter"; font-size:10px;}
+
+.ico_group {position:relative; width:100px; margin:0 calc(50% - 45px);}
+.ico_bio {float:right; font-family:"Inter"; font-size:12px; font-style:normal; font-weight:500; cursor:pointer;}
+.ico_user_check {float:left; cursor:pointer;}
+.ico_user_friends {float:left; cursor:pointer;}
+
+.person_info {line-height:1.2; text-align:center;}
+.photo {margin:0 auto 3px !important; width:100px; height:100px; background-position:center 0; background-repeat:no-repeat; border-radius:50%; cursor:pointer;}
+/* .no_photo {background-image:url(images/no_photo.jpg);} */
+/*.board1 {background-image:url(images/jerome_powell.jpg);}
+.board2 {background-image:url(images/lael_brainard.jpg);}
+.board3 {background-image:url(images/michelle_bowman.jpg);}
+.board4 {background-image:url(images/no_photo.jpg);}
+.board5 {background-image:url(images/no_photo.jpg);}
+.board6 {background-image:url(images/christopher_waller.jpg);}
+.board7 {background-image:url(images/no_photo.jpg);}
+
+.boston {background-image:url(images/susan_collins.jpg);} 
+.newyork {background-image:url(images/john_williams.jpg);}
+.philadelphia {background-image:url(images/patrick_harker.jpg);}
+.cleveland {background-image:url(images/loretta_mester.jpg);}
+.richmond {background-image:url(images/thomas_barkin.jpg);}
+.atlanta {background-image:url(images/raphael_bostic.jpg);}
+.chicago {background-image:url(images/charles_evans.jpg);}
+.louis {background-image:url(images/james_bullard.jpg);} 
+.minneapolis {background-image:url(images/neel_kashkari.jpg);}
+.kansascity {background-image:url(images/esther_george.jpg);}
+.dallas {background-image:url(images/meredith-black.jpg);}
+.sanfrancisco {background-image:url(images/mary_daly.jpg);}
+*/
+.frb_president .tooltip table {margin-top:10px; font-size:13px;}
+.frb_president .tooltip thead th {padding:3px 10px;}
+.frb_president .tooltip tbody th {text-align:center;}
+.frb_president .tooltip td {padding:3px 10px;}
+
+
+/* FOMC Speak */
+h2 + .description {margin:5px 0 8px 65px;}
+.search {padding:8PX 20px 0; height:90px; border-radius:5px; font-size:16px; font-weight:600; line-height:2.2em; box-sizing:border-box;}
+.search label {display:inline-block; width:80px; height:25px;}
+.search label[for="speaker"] {margin-left:50px;}
+.search label[for="btnReset"] {margin-left:101px; width:60px;}
+.search input {padding:0 10px; height:25px; border-radius:5px; font-size:13px; font-weight:400; outline:0; cursor:pointer;}
+.search input[id="date"] {width:130px;}
+.search input[id="search"] {width:500px;}
+.search_sel {display:inline-block; position:relative; z-index:10}
+.search_sel .fa-sort-down {position:absolute; top:9px; right:8px; z-index:11;}
+.search_sel select {width:280px; height:25px; padding:0 10px; border-radius:3px; font-size:13px; font-weight:400; line-height:25px; outline:0; cursor:pointer;}
+.search_sel select:focus {outline:0;}
+.search .fa-minus {margin:0 4px; font-size:14px;}
+.search .fa-calendar-alt {position:relative; top:2px; left:-20px; cursor:pointer;}
+
+.btn_search , .btn_reset {width:25px; height:25px; border-radius:5px; line-height:16px;}
+.btn_search i::before, .btn_reset i::before {font-size:20px;}
+.btn_search {margin-left:7px;}
+
+.search_result {margin-top:17px;}
+.search_result h3 {height:25px; font-size:16px; font-weight:700;}
+.search_result h3 span {font-size:12px;}
+.search_result .search_list {padding-top:12px; height:550px; overflow-x:hidden; overflow-y:auto;}
+.search_result .search_list .sp_section {padding:0 20px 20px; font-family:"Inter";}
+.search_result .search_list .sp_section .sp_header {font-size:16px; font-weight:700;}
+.search_result .search_list .sp_section .sp_header .sp_name {margin-left:6px;}
+.search_result .search_list .sp_section .sp_body {margin-top:4px; font-weight:400;}
+.search_result .search_list .sp_section .sp_body .sp_title {font-size:14px; font-style:italic;}
+.search_result .search_list .sp_section .sp_body .sp_conts {margin-top:4px; font-size:12px; line-height:1.4;}
+.search_result .search_list .sp_section a:hover {text-decoration:underline;}
+
+
+
+/* Dot Plot */
+.fed_rate h2 {margin-bottom:10px;}
+.dot_plot h2 {margin-top:20px;}
+.time_quarter {display:flex; flex-direction:row; justify-content:flex-start; margin:10px 0 15px; height:30px;}
+.time_quarter .player {flex-shrink:0; width:55px; }
+.time_quarter .player button {display:inline-block; width:20px; height:20px; font-size:10px; line-height:20px;}
+
+.time_quarter .play_area {flex-grow:1;}
+.time_quarter .play_area .quarter {width:100%;}
+.time_quarter .play_area .quarter button {display:inline-block; position:relative; width:calc(100% / 12); height:8px; text-align:center; cursor:pointer; transition:all ease-in 0.1s; outline:0;}
+.time_quarter .play_area .quarter button:first-child {border-top-left-radius:5px; border-bottom-left-radius:5px;}
+.time_quarter .play_area .quarter button:last-child {border-top-right-radius:5px; border-bottom-right-radius:5px;}
+.time_quarter .play_area .quarter button span {display:block; margin-top:10px; background:none; font-family:"Inter"; font-size:9px;}
+.time_quarter .play_area .quarter button i {transition:all ease-in 0.5s!important;}
+.time_quarter .play_area .quarter button i {position:absolute; left:calc(50% - 6px); margin-top:-2px; font-size:12px; color:transparent; z-index:99;}
+
+
+
+/* 정책금리발표일정 */
+.btn {display:block; height:26px; line-height:26px; font-size:11px; padding:0 10px; border-radius:2px;}
+
+
+/* Select Box */
+.selbox button {height:24px; padding:0 10px; border-radius:3px; font-size:12px;}
+.selbox {display:inline-block; position:relative; *zoom:1; z-index:10}
+.selbox.open {z-index:11}
+.selbox .value {overflow:visible; position:relative; left:0; height:24px; width:100%; text-align:left; z-index:2}
+.selbox .ico_arr_down {position:absolute; top:6px; right:10px; z-index:11}
+.selbox ul {overflow:hidden; position:absolute; top:23px; left:0; width:100%; border:0; border-radius:3px; z-index:3}
+.selbox ul.a_list {display:none}
+.selbox.open ul.a_list {display:block}
+.selbox li {overflow:hidden; position:relative; height:24px; white-space:nowrap;}
+.selbox li input.option {position:absolute; width:100%; height:22px; line-height:22px}
+.selbox li a {display:block; height:22px; line-height:22px; text-indent:9px; font-size:12px; text-align:left;}
+.con_bottom .selbox {top:-2px; margin-left:10px;}
+
+
+
+/* Icons */
+.ico_file, .ico_file2, .ico_comment, .ico_asterisk, .st_up, .st_down, .st_steady {font-size:0px; color:transparent; vertical-align:middle; cursor: pointer;}
+.ico_file, .ico_file2, .ico_comment {display:inline-block; width:15px; height:15px; border-radius:2px; box-sizing:border-box;}
+.ico_file2 {width:20px; height:20px; }
+.ico_file::before, .ico_file2::before {content:"\f1c4";}
+.ico_comment::before {content:"\f4ad";}
+.ico_comment::before, .ico_file::before {font-size:12px; line-height:14px; text-align:center;}
+.ico_file2::before {display:inline-block; font-size:16px; line-height:19px;}
+
+
+.ico_asterisk {cursor:none;}
+.ico_question {display:inline-block; vertical-align: text-top; font-size: 12px; cursor:pointer;}
+.ico_question::before {content:"\f059"; color:#EFA969;}
+.ico_user_check::before {content: "\f4fc"; color:#EFA969; padding-right:5px; font-size:10px;}
+.ico_user_friends::before {content: "\f500"; color:#DF1931; padding-right:5px; font-size:10px;}
+
+.st_up::before {content:"\f30c";}
+.st_down::before {content:"\f309";}
+.st_steady::before {content:"\f068";}
+.st_up:before, .st_down:before, .st_steady:before {font-size:15px;}
+
+.ico_close {transform: rotate(45deg); cursor: pointer;}
+.ico_close::before {content:"\f067"; font-size:14px;}
+.ico_check::before {content:"\f00c"; font-size:13px;}
+.ico_arr_down::before {content:"\f078"; font-size:9px;}
+.ico_arr_right::before {content:"\f054"; font-size:9px;}
+
+
+
+
+
+.txt_ltr {text-align:left!important;}
+.txt_cnt {text-align:center!important;}
+.txt_rtl {text-align:right!important;}
+.txt_bold {font-weight:bold!important;}
+.mg_t30 {margin-top:30px;}
+
+
+
+/* scrollbar */
+::-webkit-scrollbar {width:5px; height:5px;} 
+::-webkit-scrollbar-track {background-color:rgba(217,217,217,0.9); border-radius:5px;} 
+::-webkit-scrollbar-thumb {background-color:rgba(134,134,134,0.8); border-radius:5px;}
+
+
+
+
+    /********  Default Color Mode ************************************************************************************************/
+    body { background:#FFF; color:#09132C;}
+    .header {background:#2A3A50;}
+    .header > ul li a {background:#000; color:#9BA7AB;}
+    .header > ul li:hover a, .header > ul li.active a {background:#FFF; color:#000;}
+    .header button, .selbox button {border:1px solid #445667; background:#222E40; color:#fff;}
+
+    h2 {color:rgba(9, 19, 44, 1);}
+
+    .con_bottom {border-top:2px solid #2A3A50!important; border:1px solid #EAEAEA;}
+    .con_bottom .s_title h3 {color:#2A3A50;}
+    .con_bottom .s_title h3 a {margin-right:30px; padding-bottom:3px; font-size:14px; font-weight:bold; color:#ACACAC;}
+    .con_bottom .s_title h3 a:hover, .con_bottom .s_title h3 a.active {border-bottom:2px solid #2187DD; color:#2187DD;}
+    .con_bottom .btn {border:1px solid rgba(222, 222, 222, 1); color:#2A3A50; background:#FFF;}
+    
+   
+    .tbl td {border:1px solid #EAEAEA;}
+    .tbl tbody tr:hover {background:#F7F7F7; font-weight:bold;}
+    .vote_a {background:rgba(160, 198, 227, 0.5);}
+    .vote_d {background:rgba(255, 203, 203, 0.5);}
+    .empt {background:#F7F7F7;}
+
+    .con_top .table, .con_top .table_scroll {border-bottom:1px solid rgba(88, 157, 210, 1);}
+    .con_top .tbl th {border-bottom:2px solid rgba(88, 157, 210, 1); color:#2187DD; z-index:100;}
+    .con_bottom .table, .con_bottom .table_scroll {border-bottom:1px solid #2A3A50;}
+    .con_bottom .tbl th {background:#2A3A50; color:#FFF;}
+
+    .tbl2 {border-top:1px solid #589DD2; border-bottom:1px solid #589DD2; color:#38525E;}
+    .tbl2 thead th {border-right:1px solid rgba(239, 239, 239, 1);}
+    .tbl2 tbody th, .tbl2 tbody td {border-top:1px solid rgba(239, 239, 239, 1); border-right:1px solid rgba(239, 239, 239, 1);}
+    .tbl2 tbody .currently {background:rgba(212, 240, 207, 1);}
+    .footnote {color:#000;}
+
+
+    /* Members */
+    .frb_president .mark {color:#000;}
+
+    .ico_bio {color:#EFA969;}
+
+    .person_info {color:#000;}
+    .photo {border: 2px solid #2187DD;}
+    
+    .frb_president .tooltip thead th {border-bottom:1px solid #589DD2;}
+    .frb_president .tooltip tbody th {border-right:1px solid rgba(234, 234, 234, 1); border-bottom:1px solid rgba(234, 234, 234, 1); background:rgba(247, 247, 247, 1);}
+    .frb_president .tooltip td {border-right:1px solid rgba(234, 234, 234, 1); border-bottom:1px solid rgba(234, 234, 234, 1);}
+    .frb_president .tooltip td:last-child {border-right:none;}
+
+
+    /* FOMC Speak */
+    .search {background:#405168; color:#FFF;}
+    .search input {background:#FFF; color:#000;}
+    .search_sel .fa-sort-down {color:#7B8288;}
+    .search .fa-calendar-alt {color:#7B8288;}
+    .search_sel select {background:#FFF; color:#000;}
+
+    .btn_search , .btn_reset {background:#FFF;}
+    .btn_search i::before, .btn_reset i::before {color:#7B8288;}
+
+    .search_result h3 {border-bottom:1px solid #7B8288; color:#000;}
+    .search_result .search_list .sp_section {color:#000;}
+    .search_result .search_list .sp_section .sp_header .sp_date {color:#09132C;}
+    .search_result .search_list .sp_section .sp_header .sp_name {color:#0066CC;}
+    .search_result .search_list .sp_section .sp_body .sp_title {color:#0066CC;}
+
+    /* Dot Plot */
+    .time_quarter .player button {border:1px solid #888; background:#fff; color:#aaa;}
+    .time_quarter .player button.active {background:#888; color:#FFF;}
+    .time_quarter .play_area .quarter button {border-left:2px solid #FFF; background:#dedede;}
+    .time_quarter .play_area .quarter button:first-child {border:none;}
+    .time_quarter .play_area .quarter button:hover, .time_quarter .play_area .quarter button:focus, .time_quarter .play_area .quarter button.active {background:#bbb;}
+
+
+    /* 정책금리발표일정 */
+    .btn {border:1px solid #DEDEDE; color:#2A3A50; background:#FFF;}
+
+
+    /* popup */
+    .pop {border:1px solid #707070; background:#FFF; box-shadow:0px 3px 6px 0px rgba(00, 00, 00, 0.3);}
+    .btn_w_close {color:#BBBBBB;}
+
+        /* 소수의견 */
+        .minority dt {border:1px solid #E83E22; color:#E83E22;}
+
+        /* Tooltip */
+        .tooltip {border:1px solid #707070; background:#FFF;}
+
+
+    /* Select Box */
+    .selbox .ico_arr_down {color:#FFF;}
+    .selbox ul {border-bottom:1px solid #485a6b; background:#1b2533;}
+    .selbox li {border-left:1px solid #485a6b; border-right:1px solid #485a6b; border-top:1px solid #2b3441;}
+    .selbox li.hover a {color:#4ca5d8}
+    .selbox li a {color:#fff;}
+    .con_bottom .selbox button {border:1px solid #DEDEDE; background:#FFF; color:#2A3A50;}
+    .con_bottom .selbox .ico_arr_down {color:#494949;}
+    .con_bottom .selbox ul {border-bottom:1px solid #DEDEDE; background:#FFF;}
+    .con_bottom .selbox li {border-left:1px solid #DEDEDE; border-right:1px solid #DEDEDE; border-top:1px solid #DEDEDE;}
+    .con_bottom .selbox li a {color:#2A3A50;}
+    .con_bottom .selbox li a:hover {background:#F7F7F7;}
+
+
+    /* Icons */
+    .ico_file, .ico_file2, .ico_comment {border:1px solid rgba(123, 130, 136, 0.65); background:transparent; color:rgba(123, 130, 136, 0.65);}
+    .ico_file:hover, .ico_file2:hover, .ico_comment:hover {border:1px solid rgba(123, 130, 136, 0.85); color:rgba(123, 130, 136, 0.85);}
+    
+    .ico_asterisk::before {content:"*"; font-size:12px; color:#09132C;}
+    /* .ico_file:hover::before, .ico_file2:hover::before, .ico_comment:hover::before {color:#eee;} */
+        
+    .st_up::before {color:#E83E22;}
+    .st_down::before {color:#2492CF;}
+    .st_steady::before {color:#8CC33D;}
+
+    /* pdf viewer */
+    #bt:hover {
+        background-color: rgb(58, 133, 218) !important;
+        color: white;
+        border-color: rgb(58, 133, 218) !important;
+    }
+    #bt {
+        position: absolute;
+        z-index: 999;
+        background: #f7f7f7;
+        float: left;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 7px 15px;
+        margin-left: 15px;
+        top: 10px;
+    }
+
+
+
+
+    /********  Dark Color Mode ************************************************************************************************/
+    html[data-dark="true"] .theme--light.v-application {background:#141414 !important; color:#fff !important;}
+    html[data-dark="true"] .table {color:#fff !important;}
+    html[data-dark="true"] body {background:#141414; color:#FFF;}
+    html[data-dark="true"] .header {background:#2A3A50;}
+    html[data-dark="true"] .header > ul li a {background:#586577; color:#a7b4b8;}
+    html[data-dark="true"] .header > ul li:hover a, html[data-dark="true"] .header > ul li.active a {background:#141414; color:#FFF;}
+    html[data-dark="true"] .header button, html[data-dark="true"] .selbox button {border:1px solid #445667; background:#222E40; color:#fff;}
+
+    html[data-dark="true"] h2 {color:rgba(255, 255, 255, 0.9);}
+
+    html[data-dark="true"] .con_bottom {border-top:2px solid #589DD2!important; border:1px solid #717171;}
+    html[data-dark="true"] .con_bottom .s_title h3 {color:#FFF;}
+    html[data-dark="true"] .con_bottom .s_title h3 a {margin-right:30px; padding-bottom:3px; font-size:14px; font-weight:bold; color:#ACACAC;}
+    html[data-dark="true"] .con_bottom .s_title h3 a:hover, html[data-dark="true"] .con_bottom .s_title h3 a.active {border-bottom:2px solid #2187DD; color:#2187DD;}
+    html[data-dark="true"] .con_bottom .btn {border:1px solid rgba(222, 222, 222, 0.5); color:rgba(255, 255, 255, 0.9); background:#141414;}
+
+    html[data-dark="true"] .tbl td {border:1px solid #323232;}
+    html[data-dark="true"] .tbl tbody tr:hover {background:#282828; font-weight:bold;}
+    html[data-dark="true"] .vote_a {background:#2f578b;}
+    html[data-dark="true"] .vote_d {background:#803a3a;}
+    
+    html[data-dark="true"] .empt {background:#282828;}
+
+    html[data-dark="true"] .con_top .table, html[data-dark="true"] .con_top .table_scroll {border-bottom:1px solid #589DD2;}
+    html[data-dark="true"] .con_top .tbl th {border-bottom:2px solid #589DD2; color:#2187DD; z-index:100;}
+    html[data-dark="true"] .con_bottom .table, html[data-dark="true"] .con_bottom .table_scroll {border-bottom:1px solid #2A3A50;}
+    html[data-dark="true"] .con_bottom .tbl th {background:#454C57; color:#FFF;}
+
+    html[data-dark="true"] .tbl2 {border-top:1px solid #589DD2; border-bottom:1px solid #589DD2;}
+    html[data-dark="true"] .tbl2 thead th {border-right:1px solid rgba(239, 239, 239, 0.5); color:#2187dd;}
+    html[data-dark="true"] .tbl2 tbody th, html[data-dark="true"] .tbl2 tbody td {border-top:1px solid rgba(239, 239, 239, 0.5); border-right:1px solid rgba(239, 239, 239, 0.5);}
+    html[data-dark="true"] .tbl2 thead th:last-child , html[data-dark="true"] .tbl2 tbody td:last-child {border-right:none;}
+    html[data-dark="true"] .tbl2 tbody .currently {background:#2A4058;}
+    html[data-dark="true"] .tbl2 th {color:#2187dd;}
+    html[data-dark="true"] .tbl2 td {color:rgba(255, 255, 255, 1);}
+    /*html[data-dark="true"] .tbl2 tbody .currently td {color:#141414;}*/
+    html[data-dark="true"] .footnote {color:#FFF;}
+
+    /* Members */
+    html[data-dark="true"] .frb_president .mark {color:#FFF;}
+
+    html[data-dark="true"] .ico_bio {color:#EFA969;}
+
+    html[data-dark="true"] .person_info {color:#F0F0F0;}
+    html[data-dark="true"] .photo {border: 2px solid #2187DD;}
+    
+    html[data-dark="true"] .frb_president .tooltip thead th {border-bottom:1px solid #589DD2;}
+    html[data-dark="true"] .frb_president .tooltip tbody th {border-right:1px solid rgba(234, 234, 234, 0.5); border-bottom:1px solid rgba(234, 234, 234, 0.5); background:rgba(200, 200, 200, 0.1);}
+    html[data-dark="true"] .frb_president .tooltip td {border-right:1px solid rgba(234, 234, 234, 0.5); border-bottom:1px solid rgba(234, 234, 234, 0.5);}
+    html[data-dark="true"] .frb_president .tooltip td:last-child {border-right:none;}
+
+
+    /* FOMC Speak */
+    html[data-dark="true"] .search {background:#405168; color:#F5F5F5;}
+    html[data-dark="true"] .search input {background:rgba(20, 20, 20, 1); color:#FFF;}
+    html[data-dark="true"] .search_sel select {background:rgba(20, 20, 20, 1); color:#FFF;}
+    html[data-dark="true"] .search_sel .fa-sort-down {color:#F5F5F5;}
+    html[data-dark="true"] .search .fa-calendar-alt {color:#F5F5F5;}
+
+    html[data-dark="true"] .btn_search , html[data-dark="true"] .btn_reset {background:rgba(20, 20, 20, 1);}
+    html[data-dark="true"] .btn_search i::before, html[data-dark="true"] .btn_reset i::before {color:#F5F5F5;}
+
+    html[data-dark="true"] .search_result h3 {border-bottom:1px solid #7B8288; color:#FFF;}
+    html[data-dark="true"] .search_result .search_list .sp_section {color:#FFF;}
+    html[data-dark="true"] .search_result .search_list .sp_section .sp_header .sp_date {color:#FFF;}
+    html[data-dark="true"] .search_result .search_list .sp_section .sp_header .sp_name {color:#0066CC;}
+    html[data-dark="true"] .search_result .search_list .sp_section .sp_body .sp_title {color:#0066CC;}
+
+    /* Dot Plot */
+    html[data-dark="true"] .time_quarter .player button {border:1px solid #888; background:#fff; color:#888;}
+    html[data-dark="true"] .time_quarter .player button.active {background:#888; color:#FFF;}
+    html[data-dark="true"] .time_quarter .play_area .quarter button {border-left:2px solid #141414; background:#666;}
+    html[data-dark="true"] .time_quarter .play_area .quarter button:first-child {border-left-color:#666;}
+    html[data-dark="true"] .time_quarter .play_area .quarter button:hover, html[data-dark="true"] .time_quarter .play_area .quarter button:focus, html[data-dark="true"] .time_quarter .play_area .quarter button.active {background:#dedede;}
+    html[data-dark="true"] .time_quarter .play_area .quarter button:first-child:hover, html[data-dark="true"] .time_quarter .play_area .quarter button:first-child:focus {border-left-color:#dedede;}
+
+
+    /* 정책금리발표일정 */
+    html[data-dark="true"] .btn {border:1px solid rgba(222, 222, 222, 0.5); color:rgba(255, 255, 255, 0.9); background:#141414;}
+    
+
+    /* popup */
+    html[data-dark="true"] .pop {border:1px solid #717171; background:#141414; box-shadow:0px 3px 6px 0px rgba(00, 00, 00, 0.16);}
+    
+    /* 소수의견 */
+    html[data-dark="true"] .minority dt {border:1px solid #E83E22; color:#E83E22;}
+
+    /* Tooltip */
+    html[data-dark="true"] .tooltip {border:1px solid #707070; color:#FFF;}
+
+
+
+
+    
+    /* Select Box */
+    html[data-dark="true"] .selbox .ico_arr_down {color:#FFF;}
+    html[data-dark="true"] .selbox ul {border-bottom:1px solid #485a6b; background:#1b2533;}
+    html[data-dark="true"] .selbox li {border-left:1px solid #485a6b; border-right:1px solid #485a6b; border-top:1px solid #2b3441;}
+    html[data-dark="true"] .selbox li.hover a {color:#4ca5d8}
+    html[data-dark="true"] .selbox li a {color:#fff;}
+    html[data-dark="true"] .con_bottom .selbox button {border:1px solid #CCC; background:#141414; color:#FFF;}
+    html[data-dark="true"] .con_bottom .selbox .ico_arr_down {color:#FFF;}
+    html[data-dark="true"] .con_bottom .selbox ul {border-bottom:1px solid #CCC; background:#141414;}
+    html[data-dark="true"] .con_bottom .selbox li {border-left:1px solid #CCC; border-right:1px solid #CCC; border-top:1px solid #CCC;}
+    html[data-dark="true"] .con_bottom .selbox li a {color:#FFF;}
+    html[data-dark="true"] .con_bottom .selbox li a:hover {background:#282828;}
+
+    
+    /* Icons */
+    html[data-dark="true"] .ico_comment, html[data-dark="true"] .ico_file, html[data-dark="true"] .ico_file2 {border:1px solid #555; background:#000; color:#FFF;}
+    html[data-dark="true"] .ico_comment:hover, html[data-dark="true"] .ico_file:hover, html[data-dark="true"] .ico_file2:hover {border:1px solid #2a3a50; background:#2a3a50;}
+    
+    
+    
+    html[data-dark="true"] .st_up::before {color:#E83E22;}
+    html[data-dark="true"] .st_down::before {color:#2492CF;}
+    html[data-dark="true"] .st_steady::before {color:#8CC33D;}
+
+
+
+    /* scrollbar */
+    html[data-dark="true"] ::-webkit-scrollbar-track {background-color:rgba(217,217,217,0.8); border-radius:5px;} 
+    html[data-dark="true"] ::-webkit-scrollbar-thumb {background-color:rgba(70,70,70,1); border-radius:5px;}
+
+
+
+    @media only screen {
+        .container {
+          max-width: 1400px;
+          margin:0;
+        }
+    }
+
+    

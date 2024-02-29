@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="etfDiv">
+  <select id="selectEtfDiv">
+    SELECT AAA.F16013 AS SIMPLE_CODE, 
+      AAA.F16012 AS ISIN_CODE, 
+      AAA.F16002 AS ETF_NAME, 
+      AAA.F15007 AS BASIC_PRICE, 
+      AAA.DIV_AMT_YEAR AS DIV_AMT_YEAR, 
+      AAA.DIV_RATE AS DIV_RATE_YEAR, 
+      AAA.F12506 AS DIV_DATE, 
+      AAA.F31892 AS DIV_AMT, 
+      ROUND((AAA.F31892 * 100 / AAA.F15007), 4) AS DIV_RATE, 
+      IF(ctg_code, 'Y', 'N') AS DIV_MONTH_YN
+    FROM
+    (SELECT AA.F16013, AA.F16012, AA.F16002, AA.DIV_AMT_YEAR, AA.DIV_RATE, BB.F12506, BB.F15007, BB.F31892
+     FROM
+      (SELECT A.F16013, A.F16012, A.F16002, B.DIV_AMT_YEAR, B.DIV_RATE
+      FROM td_etp_basic A, td_etp_cash_basic B
+      WHERE (A.F16493 = 1 OR A.F16493 = 2)
+      AND A.F16012 = B.ISIN_CODE) AA
+      LEFT JOIN
+      (SELECT C.F16013, C.F12506, D.F15007, D.F31892
+      FROM (
+        SELECT F16013, MAX(F12506) AS F12506
+        FROM td_etp_hist
+        WHERE F31892 != 0
+        GROUP BY F16013) C,  td_etp_hist D
+      WHERE C.F16013 = D.F16013
+      AND C.F12506 = D.F12506) BB
+      ON AA.F16013 = BB.F16013
+    ) AAA 
+    LEFT JOIN
+    tm_etpctgnew_map BBB
+    ON AAA.F16012 = BBB.F16012
+    AND BBB.ctg_code = '0609002'
+    AND BBB.use_yn = '1'
+    ORDER BY AAA.F16013 ASC
+  </select>
+  <!-- 쿼리를 거지 같이 짜서 죄송합니다. 잘 하시는 분 수정 좀... threeon 2024.02.28-->
+  <select id="selectEtfFee">
+    SELECT AA.F16013 AS SIMPLE_CODE, 
+          AA.F16012 AS ISIN_CODE, 
+          AA.F16002 AS ETF_NAME, 
+      AA.F34763 AS FEE_RATE, 
+      AA.F35190 AS TER_RATE, 
+      AA.F35192 AS REAL_RATE, 
+      AA.ctg_large_code AS CTG_LARGE_CODE,  
+      BB.AVG_FEE_RATE, 
+      BB.AVG_TER_RATE, 
+      BB.AVG_REAL_RATE
+    FROM 
+    (SELECT A.F16013, A.F16012, A.F16002, A.F34763, A.F35190, A.F35192,
+    (SELECT DISTINCT ctg_large_code FROM tm_etpctgnew_map
+    WHERE A.F16012 = F16012
+    AND ctg_hidden_code = '01'
+    AND national_code = 'KOR') AS ctg_large_code
+    FROM td_etp_basic A
+    WHERE (A.F16493 = 1 OR A.F16493 = 2)) AA
+    LEFT JOIN 
+    (
+    SELECT '0101' AS ctg_large_code, 
+      ROUND(AVG(F34763), 4) AS AVG_FEE_RATE, 
+      ROUND(AVG(F35190), 4) AS AVG_TER_RATE, 
+      ROUND(AVG(F35192), 4) AS AVG_REAL_RATE
+    FROM td_etp_basic
+    WHERE F16012 IN (
+    SELECT F16012
+    FROM tm_etpctgnew_map
+    WHERE ctg_hidden_code = '01'
+    AND ctg_large_code = '0101'
+    AND national_code = 'KOR')
+    AND (F16493 = 1 OR F16493 = 2)
+    AND F35190 != 0 AND F35192 != 0
+    UNION
+    SELECT '0102' AS ctg_large_code, 
+      ROUND(AVG(F34763), 4) AS AVG_FEE_RATE, 
+      ROUND(AVG(F35190), 4) AS AVG_TER_RATE, 
+      ROUND(AVG(F35192), 4) AS AVG_REAL_RATE
+    FROM td_etp_basic
+    WHERE F16012 IN (
+      SELECT F16012
+      FROM tm_etpctgnew_map
+      WHERE ctg_hidden_code = '01'
+      AND ctg_large_code = '0102'
+      AND national_code = 'KOR')
+    AND (F16493 = 1 OR F16493 = 2)
+    AND F35190 != 0 AND F35192 != 0
+    UNION
+    SELECT '0103' AS ctg_large_code, 
+      ROUND(AVG(F34763), 4) AS AVG_FEE_RATE, 
+      ROUND(AVG(F35190), 4) AS AVG_TER_RATE, 
+      ROUND(AVG(F35192), 4) AS AVG_REAL_RATE
+    FROM td_etp_basic
+    WHERE F16012 IN (
+    SELECT F16012
+    FROM tm_etpctgnew_map
+    WHERE ctg_hidden_code = '01'
+    AND ctg_large_code = '0103'
+    AND national_code = 'KOR')
+    AND (F16493 = 1 OR F16493 = 2)
+    AND F35190 != 0 AND F35192 != 0
+    UNION
+    SELECT '0104' AS ctg_large_code, 
+      ROUND(AVG(F34763), 4) AS AVG_FEE_RATE, 
+      ROUND(AVG(F35190), 4) AS AVG_TER_RATE, 
+      ROUND(AVG(F35192), 4) AS AVG_REAL_RATE
+    FROM td_etp_basic
+    WHERE F16012 IN (
+    SELECT F16012
+    FROM tm_etpctgnew_map
+    WHERE ctg_hidden_code = '01'
+    AND ctg_large_code = '0104'
+    AND national_code = 'KOR')
+    AND (F16493 = 1 OR F16493 = 2)
+    AND F35190 != 0 AND F35192 != 0
+    UNION
+    SELECT '0105' AS ctg_large_code, 
+      ROUND(AVG(F34763), 4) AS AVG_FEE_RATE, 
+      ROUND(AVG(F35190), 4) AS AVG_TER_RATE, 
+      ROUND(AVG(F35192), 4) AS AVG_REAL_RATE
+    FROM td_etp_basic
+    WHERE F16012 IN (
+    SELECT F16012
+    FROM tm_etpctgnew_map
+    WHERE ctg_hidden_code = '01'
+    AND ctg_large_code = '0105'
+    AND national_code = 'KOR')
+    AND (F16493 = 1 OR F16493 = 2)
+    AND F35190 != 0 AND F35192 != 0
+    UNION
+    SELECT '0106' AS ctg_large_code, 
+      ROUND(AVG(F34763), 4) AS AVG_FEE_RATE, 
+      ROUND(AVG(F35190), 4) AS AVG_TER_RATE, 
+      ROUND(AVG(F35192), 4) AS AVG_REAL_RATE
+    FROM td_etp_basic
+    WHERE F16012 IN (
+    SELECT F16012
+    FROM tm_etpctgnew_map
+    WHERE ctg_hidden_code = '01'
+    AND ctg_large_code = '0106'
+    AND national_code = 'KOR')
+    AND (F16493 = 1 OR F16493 = 2)
+    AND F35190 != 0 AND F35192 != 0
+    ) BB
+    ON AA.ctg_large_code = BB.ctg_large_code
+    ORDER BY AA.F16013 ASC
+  </select>
+  <select id="selectEtfCtg">
+    SELECT A.ctg_large_code, A.ctg_large_name,
+    (SELECT COUNT(F16012) FROM td_etp_basic
+    	WHERE F16012 IN 
+			(SELECT DISTINCT B.F16012 FROM tm_etpctgnew_map B
+				WHERE A.ctg_large_code = B.ctg_large_code
+				AND B.ctg_hidden_code = '01'
+				AND national_code = 'KOR'
+				AND B.use_yn = 1)
+      AND (F16493 = 1 OR F16493 = 2)
+      AND F35190 != 0 AND F35192 != 0) AS jnum
+    FROM tm_etpctgnew_large_code A
+    WHERE A.ctg_hidden_code = '01'
+    AND A.use_yn = 1
+  </select>
+  <select id="selectEtfByCtgCode">
+    SELECT F16012, F16013, F16002, F34763, F35190, F35192 FROM td_etp_basic
+    	WHERE F16012 IN 
+			(SELECT DISTINCT B.F16012 FROM tm_etpctgnew_map B
+				WHERE B.ctg_large_code = #{ctg_large_code}
+				AND B.ctg_hidden_code = '01'
+				AND national_code = 'KOR'
+				AND B.use_yn = 1)
+      AND (F16493 = 1 OR F16493 = 2)
+      AND F35190 != 0 AND F35192 != 0
+      ORDER BY F16012 ASC
+  </select>
+</mapper>
