@@ -32,7 +32,11 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr v-for="(item, index) in itemList" :key="index">
+                            <tr
+                              v-for="(item, index) in itemList"
+                              :class="{ ctg_flag: item.ctgFlag }"
+                              :key="index"
+                            >
                               <td>{{ item.SIMPLE_CODE }}</td>
                               <td>{{ item.ETF_NAME }}</td>
                               <td>{{ item.ISIN_CODE }}</td>
@@ -91,7 +95,15 @@ export default {
             alert(response.data.message);
           } else {
             let tList = response.data.results;
-            vm.itemList = tList;
+            for (let i = 0; i < tList.length; i++) {
+              if (tList[i].CTG_LARGE_CODE == null) {
+                tList[i].ctgFlag = true;
+                console.log("null.............");
+              } else {
+                tList[i].ctgFlag = false;
+              }
+              vm.itemList.push(tList[i]);
+            }
           }
         });
     },
@@ -100,6 +112,9 @@ export default {
 </script>
 
 <style scoped>
+.ctg_flag {
+  background-color: greenyellow;
+}
 .v-card__title {
   margin-bottom: 0;
   padding-bottom: 0;

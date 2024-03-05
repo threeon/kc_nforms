@@ -55,7 +55,7 @@
     (SELECT DISTINCT ctg_large_code FROM tm_etpctgnew_map
     WHERE A.F16012 = F16012
     AND ctg_hidden_code = '01'
-    AND national_code = 'KOR') AS ctg_large_code
+    AND domestic_flag = 1) AS ctg_large_code
     FROM td_etp_basic A
     WHERE (A.F16493 = 1 OR A.F16493 = 2)) AA
     LEFT JOIN 
@@ -70,7 +70,7 @@
     FROM tm_etpctgnew_map
     WHERE ctg_hidden_code = '01'
     AND ctg_large_code = '0101'
-    AND national_code = 'KOR')
+    AND domestic_flag = 1)
     AND (F16493 = 1 OR F16493 = 2)
     AND F35190 != 0 AND F35192 != 0
     UNION
@@ -84,7 +84,7 @@
       FROM tm_etpctgnew_map
       WHERE ctg_hidden_code = '01'
       AND ctg_large_code = '0102'
-      AND national_code = 'KOR')
+      AND domestic_flag = 1)
     AND (F16493 = 1 OR F16493 = 2)
     AND F35190 != 0 AND F35192 != 0
     UNION
@@ -98,7 +98,7 @@
     FROM tm_etpctgnew_map
     WHERE ctg_hidden_code = '01'
     AND ctg_large_code = '0103'
-    AND national_code = 'KOR')
+    AND domestic_flag = 1)
     AND (F16493 = 1 OR F16493 = 2)
     AND F35190 != 0 AND F35192 != 0
     UNION
@@ -112,7 +112,7 @@
     FROM tm_etpctgnew_map
     WHERE ctg_hidden_code = '01'
     AND ctg_large_code = '0104'
-    AND national_code = 'KOR')
+    AND domestic_flag = 1)
     AND (F16493 = 1 OR F16493 = 2)
     AND F35190 != 0 AND F35192 != 0
     UNION
@@ -126,7 +126,7 @@
     FROM tm_etpctgnew_map
     WHERE ctg_hidden_code = '01'
     AND ctg_large_code = '0105'
-    AND national_code = 'KOR')
+    AND domestic_flag = 1)
     AND (F16493 = 1 OR F16493 = 2)
     AND F35190 != 0 AND F35192 != 0
     UNION
@@ -140,7 +140,7 @@
     FROM tm_etpctgnew_map
     WHERE ctg_hidden_code = '01'
     AND ctg_large_code = '0106'
-    AND national_code = 'KOR')
+    AND domestic_flag = 1)
     AND (F16493 = 1 OR F16493 = 2)
     AND F35190 != 0 AND F35192 != 0
     ) BB
@@ -154,7 +154,7 @@
 			(SELECT DISTINCT B.F16012 FROM tm_etpctgnew_map B
 				WHERE A.ctg_large_code = B.ctg_large_code
 				AND B.ctg_hidden_code = '01'
-				AND national_code = 'KOR'
+				AND domestic_flag = 1
 				AND B.use_yn = 1)
       AND (F16493 = 1 OR F16493 = 2)
       AND F35190 != 0 AND F35192 != 0) AS jnum
@@ -168,7 +168,7 @@
 			(SELECT DISTINCT B.F16012 FROM tm_etpctgnew_map B
 				WHERE B.ctg_large_code = #{ctg_large_code}
 				AND B.ctg_hidden_code = '01'
-				AND national_code = 'KOR'
+				AND domestic_flag = 1
 				AND B.use_yn = 1)
       AND (F16493 = 1 OR F16493 = 2)
       AND F35190 != 0 AND F35192 != 0
