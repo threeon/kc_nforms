@@ -59,7 +59,7 @@ export default {
       var vm = this;
       setTimeout(() => {
         vm.alertFlag = false;
-      }, 3000);
+      }, 30000);
     },
     progress(flag) {
       this.progressFlag = flag;

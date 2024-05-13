@@ -105,6 +105,9 @@ module.exports = {
     if (mday < 10) mday = "0" + mday;
     return myear + "" + mmonth + "" + mday;
   },
+  getBefYears: function (byear) {
+    return Number(this.getToday()) - 10000 * byear;
+  },
   formatStringNum: function (num) {
     if (num != null) {
       return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");

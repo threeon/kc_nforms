@@ -4,6 +4,8 @@ import AdminHome from "@/components/Admin/AdminHome.vue";
 // 정보 DB DATA MANAGE
 import RicChange from "@/components/Admin/DataManage/RicChange.vue";
 import ReportCode from "@/components/Admin/DataManage/ReportCode.vue";
+import BondIndex from "@/components/Admin/DataManage/BondIndex.vue";
+import BondIndexMod from "@/components/Admin/DataManage/BondIndexMod.vue";
 
 // ETP DB DATA MANAGE
 import EtfDivInfo from "@/components/Admin/Etp/EtfDivInfo.vue";
@@ -22,6 +24,8 @@ export default [
       // 정보DB DATA MANAGE
       { path: "ricchange", component: RicChange },
       { path: "reportcode", component: ReportCode },
+      { path: "bondindex", component: BondIndex },
+      { path: "bondindexmod", component: BondIndexMod },
       // ETP DB DATA MANAGE
       { path: "etfdivinfo", component: EtfDivInfo },
       { path: "etffeeinfo", component: EtfFeeInfo },

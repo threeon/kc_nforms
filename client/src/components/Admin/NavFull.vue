@@ -109,6 +109,14 @@ export default {
           subitems: [
             { title: "001. RIC CHANGE", link: "/admintool/ricchange" },
             { title: "002. 리포트 종목연동", link: "/admintool/reportcode" },
+            {
+              title: "003. 채권지수 소급(업로드)",
+              link: "/admintool/bondindex",
+            },
+            {
+              title: "004. 채권지수 소급(수정)",
+              link: "/admintool/bondindexmod",
+            },
           ],
         },
         {
@@ -129,12 +137,15 @@ export default {
               title: "003. ETF 분류정보",
               link: "/admintool/etfctginfo",
             },
+            /*
             {
               title: "(채권)xdb_m060csigamast",
               link: "/admintool/ricchange",
             },
+            */
           ],
         },
+        /*
         {
           action: "token",
           title: "DP-DB 데이터 관리",
@@ -147,6 +158,7 @@ export default {
             },
           ],
         },
+        */
         {
           action: "accessibility_new",
           title: "MEMBER",
