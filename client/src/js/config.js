@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-  env: "opr",
-  base_url: "https://nforms.koscom.co.kr",
+  env: "dev",
+  base_url: "http://127.0.0.1:8057",
   home_url: "/admintool",
 };
