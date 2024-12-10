@@ -52,6 +52,7 @@ module.exports = class {
 
 		//server/ 경로에서 불릴 때만 유효한 경로
 		ibatisMapper.createMapper([dirPrefix + "database/mysql/etp/etfDiv.xml"]);
+		ibatisMapper.createMapper([dirPrefix + "database/mysql/etp/etpCorrel.xml"]);
 
 		return ibatisMapper;
 	}

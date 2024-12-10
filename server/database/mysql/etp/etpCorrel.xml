@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="etpCorrel">
+
+  <select id="getEtpCorrelBasic">
+    SELECT ETF_ISIN_CODE AS F16012
+    FROM td_etp_correl
+    GROUP BY ETF_ISIN_CODE
+  </select>
+
+  <select id="getStartDate">
+    SELECT max(TRADE_DATE)-10000 AS TRADE_DATE
+    FROM td_etp_correl
+  </select>
+
+  <select id="getCorrelHist">
+    SELECT *
+      FROM td_etp_correl
+    WHERE ETF_ISIN_CODE = #{F16012}
+    <![CDATA[
+    AND TRADE_DATE >= #{sdate}
+    AND TRADE_DATE <= #{edate}
+    ]]>
+    ORDER BY TRADE_DATE DESC
+    LIMIT 300
+  </select>
+
+  <select id="getCorrelBigoHist">
+    SELECT *
+      FROM td_etp_correl_bigo
+    WHERE ETF_ISIN_CODE = #{F16012}
+    <![CDATA[
+    AND TRADE_DATE >= #{sdate}
+    AND TRADE_DATE <= #{edate}
+    ]]>
+    ORDER BY TRADE_DATE DESC
+  </select>
+
+  <update id="updateEtpCorrelHist" >
+    UPDATE td_etp_hist
+    <set>
+      CORREL = #{CORREL}
+    </set> 	
+    WHERE F16013 = (SELECT F16013 FROM td_etp_basic WHERE F16012 = #{F16012})
+    AND F12506 = #{edate}
+  </update>
+
+  <select id="getEtpCorrelTotal">
+    SELECT F16012, CORREL
+    FROM td_etp_basic
+    WHERE CORREL IS NOT NULL
+  </select>
+
+  <select id="getEtpCorrelTotalHist">
+    SELECT B.F16012, A.CORREL
+    FROM (
+    SELECT F16013, CORREL
+        FROM td_etp_hist
+        WHERE F12506 = #{edate}
+        AND CORREL IS NOT NULL
+        AND CORREL != 0) A, td_etp_basic B
+    WHERE A.F16013 = B.F16013
+  </select>
+
+  <select id="getEtpCorrelTotalAllData">
+    SELECT F16012, CORREL
+    FROM td_etp_basic
+    WHERE CORREL IS NOT NULL AND 
+    <foreach collection="list" item="code" separator=" OR ">F16012 = #{code}</foreach>
+  </select>
+
+</mapper>

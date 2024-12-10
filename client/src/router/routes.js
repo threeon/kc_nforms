@@ -11,6 +11,7 @@ import BondIndexMod from "@/components/Admin/DataManage/BondIndexMod.vue";
 import EtfDivInfo from "@/components/Admin/Etp/EtfDivInfo.vue";
 import EtfFeeInfo from "@/components/Admin/Etp/EtfFeeInfo.vue";
 import EtfCtgInfo from "@/components/Admin/Etp/EtfCtgInfo.vue";
+import EtpCorrelFile from "@/components/Admin/Etp/EtpCorrelFile.vue";
 
 // MEMBER MANAGE
 import MemberManage from "@/components/Admin/Member/MemberManage.vue";
@@ -30,6 +31,7 @@ export default [
       { path: "etfdivinfo", component: EtfDivInfo },
       { path: "etffeeinfo", component: EtfFeeInfo },
       { path: "etfctginfo", component: EtfCtgInfo },
+      { path: "etpcorrelfile", component: EtpCorrelFile },
       // MEMBER MANAGE
       { path: "member", component: MemberManage },
     ],

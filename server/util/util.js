@@ -46,5 +46,16 @@ module.exports = {
 
 	getRandomInt: function (min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
-	},
+  },
+
+  padZero: function (str, len) {
+    var rtnStr = '';
+    str = str + '';
+    if (Number(str) < 0) {
+      rtnStr = str.length >= len ? str : '-' + new Array(len - str.length + 1).join('0') + Math.abs(Number(str));
+    } else {
+      rtnStr = str.length >= len ? str : new Array(len - str.length + 1).join('0') + str;
+    }
+    return rtnStr;
+  }
 };

@@ -137,6 +137,10 @@ export default {
               title: "003. ETF 분류정보",
               link: "/admintool/etfctginfo",
             },
+            {
+              title: "004. ETP 상관계수 화일 생성",
+              link: "/admintool/etpcorrelfile",
+            },
             /*
             {
               title: "(채권)xdb_m060csigamast",
