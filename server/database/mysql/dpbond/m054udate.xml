@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="m054udate">  
+
+  <insert id="insertM054udate">
+    <foreach collection="itemList" item="d" separator=";">
+    INSERT INTO dp_bond_m054udate (TRADE_DATE, TIME_TYPE, DAY_TYPE, DATE_TYPE)
+    values 
+      (#{d.tradeDate}, #{d.timeType}, #{d.dayType}, #{d.dateType})
+    ON DUPLICATE KEY UPDATE
+      TIME_TYPE = #{d.timeType},
+      DAY_TYPE = #{d.dayType},
+      DATE_TYPE = #{d.dateType}
+    </foreach>
+  </insert>
+
+</mapper>

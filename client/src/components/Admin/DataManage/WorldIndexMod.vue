@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar color="white">
-      <v-toolbar-title>채권지수 소급 (M045UBASEIN :수정)</v-toolbar-title>
+      <v-toolbar-title>세계지수 소급 (M193HBASED :수정)</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md pa-0 ma-0>
@@ -31,6 +31,11 @@
                       >조회</v-btn
                     >
                   </v-flex>
+                  <v-flex xs12 md1>
+                    <v-btn color="orange" dark @click.stop="newItem"
+                      >추가</v-btn
+                    >
+                  </v-flex>
                 </v-layout>
                 <v-layout wrap>
                   <v-flex xs12 md12>
@@ -49,36 +54,38 @@
                             <tr style="cursor: pointer" @click="reOrder()">
                               <th>일자</th>
                               <th>종목코드</th>
-                              <th>F30792</th>
-                              <th>F30791</th>
-                              <th>F30925</th>
-                              <th>F30646</th>
-                              <th>F30927</th>
-                              <th>F16188</th>
-                              <th>F30797</th>
-                              <th>F30798</th>
-                              <th>F30799</th>
-                              <th>F30923</th>
-                              <th>ACTION</th>
+                              <th>F18025</th>
+                              <th>F15009</th>
+                              <th>F15010</th>
+                              <th>F15011</th>
+                              <th>F15001</th>
+                              <th>F15472</th>
+                              <th>F15004</th>
+                              <th>F15006</th>
+                              <th>UPDATE</th>
+                              <th>DELETE</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr v-for="(item, index) in itemList" :key="index">
                               <td>{{ item.F12506 }}</td>
                               <td>{{ item.F16013 }}</td>
-                              <td>{{ item.F30792 }}</td>
-                              <td>{{ item.F30791 }}</td>
-                              <td>{{ item.F30925 }}</td>
-                              <td>{{ item.F30646 }}</td>
-                              <td>{{ item.F30927 }}</td>
-                              <td>{{ item.F16188 }}</td>
-                              <td>{{ item.F30797 }}</td>
-                              <td>{{ item.F30798 }}</td>
-                              <td>{{ item.F30799 }}</td>
-                              <td>{{ item.F30923 }}</td>
+                              <td>{{ item.F18025 }}</td>
+                              <td>{{ item.F15009 }}</td>
+                              <td>{{ item.F15010 }}</td>
+                              <td>{{ item.F15011 }}</td>
+                              <td>{{ item.F15001 }}</td>
+                              <td>{{ item.F15472 }}</td>
+                              <td>{{ item.F15004 }}</td>
+                              <td>{{ item.F15006 }}</td>
                               <td>
                                 <v-icon @click="updateItem(item, index)">
                                   edit
+                                </v-icon>
+                              </td>
+                              <td>
+                                <v-icon @click="deleteItem(item, index)">
+                                  delete
                                 </v-icon>
                               </td>
                             </tr>
@@ -105,14 +112,14 @@
 <script>
 import Config from "@/js/config.js";
 import Util from "@/js/util.js";
-import UpdateModal from "./BondIndexModModal.vue";
+import UpdateModal from "./WorldIndexModModal.vue";
 
 export default {
   data() {
     return {
       sdate: "",
       edate: "",
-      jcode: "",
+      jcode: ".IRTS",
       itemList: [],
       updateFlag: false,
       editedItem: {},
@@ -125,17 +132,52 @@ export default {
   },
   created: function () {
     this.edate = Util.getToday();
-    // default : 10년전
-    this.sdate = Util.getBefYears(10);
+    // default : 1년전
+    this.sdate = Util.getBefYears(1);
     // console.log(this.sdate, this.edate);
     // this.getList();
   },
   mounted: function () {},
   methods: {
+    newItem: function () {
+      // console.log(this.editedItem);
+      console.log(this.jcode)
+      this.editedItem = {
+        F16013: this.jcode,
+        F12506: "",
+        F18025: "",
+        F15009: "",
+        F15010: "",
+        F15011: "",
+        F15001: "",
+        F15472: "",
+        F15004: "",
+        F15006: "",
+
+      };
+      this.updateFlag = true;
+    },
     updateItem: function (item) {
       // console.log(this.editedItem);
       this.editedItem = item;
       this.updateFlag = true;
+    },
+    deleteItem: function (item) {
+      let vm = this;
+      axios
+        .post(
+          Config.base_url + "/api/datamanage/worldindex/deleteitem",
+          vm.editedItem
+        )
+        .then(function (response) {
+          // console.log(response.data);
+          if (response.data.success == false) {
+            alert(response.data.message);
+          } else {
+            alert("정보 삭제를 완료하였습니다.");
+            vm.close();
+          }
+        });
     },
     getList: function () {
       let vm = this;
@@ -143,7 +185,7 @@ export default {
       vm.itemList = [];
       // console.log("getList");
       axios
-        .get(Config.base_url + "/api/datamanage/bondindex/getitemlist", {
+        .get(Config.base_url + "/api/datamanage/worldindex/getitemlist", {
           params: {
             sdate: vm.sdate,
             edate: vm.edate,
@@ -163,16 +205,14 @@ export default {
               let item = {};
               item.F12506 = tList[i].f12506;
               item.F16013 = tList[i].f16013;
-              item.F30792 = tList[i].f30792;
-              item.F30791 = tList[i].f30791;
-              item.F30925 = tList[i].f30925;
-              item.F30646 = tList[i].f30646;
-              item.F30927 = tList[i].f30927;
-              item.F16188 = tList[i].f16188;
-              item.F30797 = tList[i].f30797;
-              item.F30798 = tList[i].f30798;
-              item.F30799 = tList[i].f30799;
-              item.F30923 = tList[i].f30923;
+              item.F18025 = tList[i].f18025;
+              item.F15009 = tList[i].f15009;
+              item.F15010 = tList[i].f15010;
+              item.F15011 = tList[i].f15011;
+              item.F15001 = tList[i].f15001;
+              item.F15472 = tList[i].f15472;
+              item.F15004 = tList[i].f15004;
+              item.F15006 = tList[i].f15006;
               vm.itemList.push(item);
               // console.log(item);
             }

@@ -52,7 +52,7 @@ module.exports = class {
 		else dirPrefix = "./";
 		//server/ 경로에서 불릴 때만 유효한 경로
 		ibatisMapper.createMapper([
-			// dirPrefix + "database/mysql/macromanager/bond.xml"
+			dirPrefix + "database/mysql/dpbond/m054udate.xml"
 		]);
 
 		return ibatisMapper;

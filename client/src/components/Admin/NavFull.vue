@@ -110,12 +110,32 @@ export default {
             { title: "001. RIC CHANGE", link: "/admintool/ricchange" },
             { title: "002. 리포트 종목연동", link: "/admintool/reportcode" },
             {
-              title: "003. 채권지수 소급(업로드)",
-              link: "/admintool/bondindex",
+              title: "003. 채권지수 소급 (업로드)",
+              link: "/admintool/bondindexupload",
             },
             {
-              title: "004. 채권지수 소급(수정)",
+              title: "004. 채권지수 소급 (수정)",
               link: "/admintool/bondindexmod",
+            },
+            {
+              title: "005. 세계지수 (업로드)",
+              link: "/admintool/worldindexupload",
+            },
+            {
+              title: "006. 세계지수 (수정)",
+              link: "/admintool/worldindexmod",
+            },
+          ],
+        },
+        {
+          action: "fence",
+          title: "정보-DB 플랫폼 이관",
+          active: true,
+          level: "NORMAL",
+          subitems: [
+            { 
+              title: "001. M054UDATE (dp_bond_m054udate)", 
+              link: "/admintool/migration/m054udate" 
             },
           ],
         },
