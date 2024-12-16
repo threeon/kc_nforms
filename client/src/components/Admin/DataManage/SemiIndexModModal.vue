@@ -2,19 +2,19 @@
   <v-dialog v-model="dialog" persistent max-width="800px">
     <v-card>
       <v-card-title>
-        <span class="headline">세계지수 정보 수정</span>
+        <span class="headline">반도체지수 정보 수정</span>
       </v-card-title>
 
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <v-flex xs6>
+            <v-flex xs3>
               <v-text-field
                 v-model="editedItem.F16013"
                 label="F16013(Read Only)"
               ></v-text-field>
             </v-flex>
-            <v-flex xs6>
+            <v-flex xs3>
               <v-text-field
                 v-model="editedItem.F12506"
                 label="F12506"
@@ -48,6 +48,12 @@
               <v-text-field
                 v-model="editedItem.F15001"
                 label="F15001(현재가)"
+              ></v-text-field>
+            </v-flex>
+            <v-flex xs3>
+              <v-text-field
+                v-model="editedItem.F15015"
+                label="F15015(거래량)"
               ></v-text-field>
             </v-flex>
             <v-flex xs3>

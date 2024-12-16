@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar color="white">
-      <v-toolbar-title>채권지수 소급 (M045UBASEIN :수정)</v-toolbar-title>
+      <v-toolbar-title>채권지수 (M045UBASEIN :수정)</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md pa-0 ma-0>

@@ -125,12 +125,28 @@ export default {
               title: "006. 세계지수 (수정)",
               link: "/admintool/worldindexmod",
             },
+            {
+              title: "007. 반도체지수 마스터 (업로드)",
+              link: "/admintool/semimasterupload",
+            },
+            {
+              title: "008. 반도체지수 마스터(수정)",
+              link: "/admintool/semimastermod",
+            },
+            {
+              title: "009. 반도체지수 (업로드)",
+              link: "/admintool/semiindexupload",
+            },
+            {
+              title: "010. 반도체지수 (수정)",
+              link: "/admintool/semiindexmod",
+            },
           ],
         },
         {
           action: "fence",
           title: "정보-DB 플랫폼 이관",
-          active: true,
+          active: false,
           level: "NORMAL",
           subitems: [
             { 

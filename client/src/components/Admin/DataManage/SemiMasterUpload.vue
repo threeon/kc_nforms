@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar color="white">
-      <v-toolbar-title>세계지수 소급 (M193HBASED : 업로드)</v-toolbar-title>
+      <v-toolbar-title>반도체지수 마스터(M203HREFE : 업로드)</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md pa-0 ma-0>
@@ -43,30 +43,18 @@
                         <table>
                           <thead>
                             <tr>
-                              <th>일자</th>
-                              <th>종목코드</th>
-                              <th>F18025</th>
-                              <th>F15009</th>
-                              <th>F15010</th>
-                              <th>F15011</th>
-                              <th>F15001</th>
-                              <th>F15472</th>
-                              <th>F15004</th>
-                              <th>F15006</th>
+                              <th>F16013</th>
+                              <th>F16288</th>
+                              <th>F16542</th>
+                              <th>F16002</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr v-for="(item, index) in itemList" :key="index">
-                              <td>{{ item.F12506 }}</td>
                               <td>{{ item.F16013 }}</td>
-                              <td>{{ item.F18025 }}</td>
-                              <td>{{ item.F15009 }}</td>
-                              <td>{{ item.F15010 }}</td>
-                              <td>{{ item.F15011 }}</td>
-                              <td>{{ item.F15001 }}</td>
-                              <td>{{ item.F15472 }}</td>
-                              <td>{{ item.F15004 }}</td>
-                              <td>{{ item.F15006 }}</td>
+                              <td>{{ item.F16288 }}</td>
+                              <td>{{ item.F16542 }}</td>
+                              <td>{{ item.F16002 }}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -89,8 +77,6 @@ import Util from "@/js/util.js";
 export default {
   data() {
     return {
-      sdate: "",
-      edate: "",
       itemList: [],
       insertTime: 0,
     };
@@ -125,25 +111,20 @@ export default {
 
         // sheet1만 사용
         const toJson = xlsx.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+        console.log(toJson)
         for (let i = 0; i < toJson.length; i++) {
           let tobj = {
             F16013: "",
-            F12506: "",
-            F18025: "",
-            F15009: "",
-            F15010: "",
-            F15011: "",
-            F15001: "",
-            F15472: "",
-            F15004: "",
-            F15006: "",
+            F16288: "",
+            F16542: "",
+            F16002: "",
           };
           for (let j = 0; j < Object.keys(toJson[i]).length; j++) {
             tobj[Object.keys(tobj)[j]] = (
               "" + toJson[i][Object.keys(toJson[i])[j]]
             ).trim();
           }
-          console.log(tobj);
+          // console.log(tobj);
           vm.itemList.push(tobj);
           // console.log(tobj);
           // if (i == 3) break;
@@ -158,7 +139,7 @@ export default {
     excelUpload: function () {
       let vm = this;
       axios
-        .post(Config.base_url + "/api/datamanage/worldindex/excelupload", {
+        .post(Config.base_url + "/api/datamanage/semimaster/excelupload", {
           itemList: vm.itemList,
         })
         .then(function (response) {
@@ -166,7 +147,7 @@ export default {
           if (response.data.success == false) {
             alert(response.data.message);
           } else {
-            alert("세계지수 소급을 완료하였습니다.");
+            alert("소급을 완료하였습니다.");
           }
         });
     },

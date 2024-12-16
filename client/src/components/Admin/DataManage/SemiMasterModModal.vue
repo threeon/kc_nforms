@@ -2,70 +2,34 @@
   <v-dialog v-model="dialog" persistent max-width="800px">
     <v-card>
       <v-card-title>
-        <span class="headline">세계지수 정보 수정</span>
+        <span class="headline">반도체지수 정보 수정</span>
       </v-card-title>
 
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <v-flex xs6>
+            <v-flex xs3>
               <v-text-field
                 v-model="editedItem.F16013"
                 label="F16013(Read Only)"
               ></v-text-field>
             </v-flex>
-            <v-flex xs6>
+            <v-flex xs3>
               <v-text-field
-                v-model="editedItem.F12506"
-                label="F12506"
+                v-model="editedItem.F16288"
+                label="F16288"
               ></v-text-field>
             </v-flex>
             <v-flex xs3>
               <v-text-field
-                v-model="editedItem.F18025"
-                label="F18025(종목구분코드)"
+                v-model="editedItem.F16542"
+                label="F16542(DRAM/NAND)"
               ></v-text-field>
             </v-flex>
             <v-flex xs3>
               <v-text-field
-                v-model="editedItem.F15009"
-                label="F15009(시가)"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs3>
-              <v-text-field
-                v-model="editedItem.F15010"
-                label="F15010(고가)"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs3>
-              <v-text-field
-                v-model="editedItem.F15011"
-                label="F15011(저가)"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs3>
-              <v-text-field
-                v-model="editedItem.F15001"
-                label="F15001(현재가)"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs3>
-              <v-text-field
-                v-model="editedItem.F15472"
-                label="F15472(대비)"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs3>
-              <v-text-field
-                v-model="editedItem.F15004"
-                label="F15004(등락률)"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs3>
-              <v-text-field
-                v-model="editedItem.F15006"
-                label="F15006(등락구분코드)"
+                v-model="editedItem.F16002"
+                label="F16002(종목명)"
               ></v-text-field>
             </v-flex>
           </v-layout>
@@ -98,7 +62,7 @@ export default {
   beforeDestroy() {},
   mounted: function () {
     this.dialog = true;
-    console.log(this.oldItem);
+    // console.log(this.oldItem);
     this.editedItem = this.oldItem;
   },
   methods: {
@@ -106,7 +70,7 @@ export default {
       let vm = this;
       axios
         .post(
-          Config.base_url + "/api/datamanage/worldindex/updateitem",
+          Config.base_url + "/api/datamanage/semimaster/updateitem",
           vm.editedItem
         )
         .then(function (response) {

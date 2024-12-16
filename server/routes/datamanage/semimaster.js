@@ -8,26 +8,13 @@ const infoDb = require("../common/asyncInfoDb");
 
 let getItemList = async function (req, res) {
 	console.log(
-		"/api/datamanage/worldindex/getitemlist : /datamanage/worldindex 안에 있는 getItemList 호출됨."
+		"/api/datamanage/semimaster/getitemlist : /datamanage/semimaster 안에 있는 getItemList 호출됨."
 	);
-	let sdate = "";
-	let edate = "";
-	let jcode = "";
-	let jstr = "";
-
-	sdate = req.query.sdate;
-	edate = req.query.edate;
-	jcode = req.query.jcode;
-
-	if (jcode.length > 0) jstr = `AND F16013 = '${jcode}' `;
-
-	let tstr = `SELECT F12506, TRIM(F16013) AS F16013, 
-    F18025, F15009, F15010, F15011, F15001,
-    F15472, F15004, F15006
-    FROM DBSUPER.M193HBASED
-    WHERE F12506 >= '${sdate}'
-    AND F12506 <= '${edate}' ${jstr}
-    ORDER BY F12506 DESC
+	let tstr = `SELECT TRIM(F16013) AS F16013, 
+    F16002, F16288, F16542
+    FROM DBSUPER.M203HREFE
+    WHERE F16288 = 'SEM'
+    ORDER BY F16542 ASC, F16013 DESC
     `;
 
 	// console.log(tstr);
@@ -38,7 +25,7 @@ let getItemList = async function (req, res) {
 
 let excelUpload = async function (req, res) {
 	console.log(
-		"/api/datamanage/worldindex/excelupload : /datamanage/worldindex 안에 있는 excelUpload 호출됨."
+		"/api/datamanage/semimaster/excelupload : /datamanage/semimaster 안에 있는 excelUpload 호출됨."
 	);
 
 	let param = req.body;
@@ -55,17 +42,15 @@ let excelUpload = async function (req, res) {
 	// console.log(param);
 	res.json({ success: true, results: [] });
 	console.log(
-		"/api/datamanage/bondindex/excelupload : /datamanage/bondindex 안에 있는 excelUpload 완료됨."
+		"/api/datamanage/semimaster/excelupload : /datamanage/semimaster 안에 있는 excelUpload 완료됨."
 	);
 };
 
 // Altibase DBMS 는 insert Or update 가 안됨
 const insertXdbOne = async function (dobj) {
-	// dobj.F33965 = 2001;
-	let tstr = `SELECT F12506, F16013
-      FROM DBSUPER.M193HBASED
-      WHERE F12506 = ${dobj.F12506}
-      AND trim(F16013) = '${dobj.F16013}'
+	let tstr = `SELECT F16013
+      FROM DBSUPER.M203HREFE
+      WHERE F16013 = '${dobj.F16013}'
       `;
 
 	// console.log("-------------------------------------------------");
@@ -78,38 +63,33 @@ const insertXdbOne = async function (dobj) {
 	// 값이 없으면 INERT
 	if (res.resultCode == "success" && res.resultList.length >= 1) {
 		// UPDATE
-		tstr = `UPDATE DBSUPER.M193HBASED SET
-          F18025 = '${dobj.F18025}'
-          ,F15009 = '${dobj.F15009}'
-          ,F15010 = '${dobj.F15010}'
-          ,F15011 = '${dobj.F15011}'
-          ,F15001 = '${dobj.F15001}'
-          ,F15472 = '${dobj.F15472}'
-          ,F15004 = '${dobj.F15004}'
-          ,F15006 = '${dobj.F15006}'
-        WHERE F12506 = '${dobj.F12506}'
-        AND F16013 = '${dobj.F16013}'
+		tstr = `UPDATE DBSUPER.M203HREFE SET
+          F16288 = '${dobj.F16288}',
+          F16542 = '${dobj.F16542}',
+          F16002 = '${dobj.F16002}',
+          F16003 = '${dobj.F16002}',
+          F16004 = '${dobj.F16002}',
+          F16005 = '${dobj.F16002}'
+        WHERE F16013 = '${dobj.F16013}'
       `;
 	} else {
 		// INSERT
-		tstr = `INSERT INTO DBSUPER.M193HBASED (
-      F12506, F16013, 
-      F18025, F15009, F15010, F15011, F15001,
-      F15472, F15004, F15006
-    ) VALUES ('${dobj.F12506}', '${dobj.F16013}', 
-    '${dobj.F18025}', '${dobj.F15009}', '${dobj.F15010}', '${dobj.F15011}', '${dobj.F15001}',
-    '${dobj.F15472}', '${dobj.F15004}', '${dobj.F15006}'
+		tstr = `INSERT INTO DBSUPER.M203HREFE (
+      F16013, F16288, F16542,
+      F16002, F16003, F16004, F16005
+    ) VALUES ('${dobj.F16013}', '${dobj.F16288}', '${dobj.F16542}',
+    '${dobj.F16002}', '${dobj.F16002}', '${dobj.F16002}', '${dobj.F16002}'
     )`;
   }
-  console.log(tstr);
+  // console.log(tstr);
   res = await infoDb.run("xdb", tstr);
-  console.log(res);
+  // console.log(res);
   return res;
 };
 
 let updateItem = async function (req, res) {
 	console.log(
-		"/api/datamanage/worldindex/updateitem : /datamanage/worldindex 안에 있는 updateItem 호출됨."
+		"/api/datamanage/semimaster/updateitem : /datamanage/semimaster 안에 있는 updateItem 호출됨."
 	);
 
 	let dobj = req.body;
@@ -126,16 +106,15 @@ let updateItem = async function (req, res) {
 
 let deleteItem = async function (req, res) {
 	console.log(
-		"/api/datamanage/worldindex/deleteitem : /datamanage/worldindex 안에 있는 deleteItem 호출됨."
+		"/api/datamanage/semimaster/deleteitem : /datamanage/semimaster 안에 있는 deleteItem 호출됨."
 	);
 
 	let dobj = req.body;
 	// console.log(dobj);
 
 	let tstr = `DELETE
-    FROM DBSUPER.M193HBASED
-    WHERE F12506 = '${dobj.F12506}'
-    AND F16013 = '${dobj.F16013}'
+    FROM DBSUPER.M203HREFE
+    WHERE F16013 = '${dobj.F16013}'
   `;
 
   let result = await infoDb.run("xdb", tstr);

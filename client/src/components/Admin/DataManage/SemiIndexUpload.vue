@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar color="white">
-      <v-toolbar-title>세계지수 소급 (M193HBASED : 업로드)</v-toolbar-title>
+      <v-toolbar-title>반도체지수 소급 (M203HBASED : 업로드)</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md pa-0 ma-0>
@@ -50,6 +50,7 @@
                               <th>F15010</th>
                               <th>F15011</th>
                               <th>F15001</th>
+                              <th>F15015</th>
                               <th>F15472</th>
                               <th>F15004</th>
                               <th>F15006</th>
@@ -64,6 +65,7 @@
                               <td>{{ item.F15010 }}</td>
                               <td>{{ item.F15011 }}</td>
                               <td>{{ item.F15001 }}</td>
+                              <td>{{ item.F15015 }}</td>
                               <td>{{ item.F15472 }}</td>
                               <td>{{ item.F15004 }}</td>
                               <td>{{ item.F15006 }}</td>
@@ -134,6 +136,7 @@ export default {
             F15010: "",
             F15011: "",
             F15001: "",
+            F15015: "",
             F15472: "",
             F15004: "",
             F15006: "",
@@ -158,7 +161,7 @@ export default {
     excelUpload: function () {
       let vm = this;
       axios
-        .post(Config.base_url + "/api/datamanage/worldindex/excelupload", {
+        .post(Config.base_url + "/api/datamanage/semiindex/excelupload", {
           itemList: vm.itemList,
         })
         .then(function (response) {
@@ -166,7 +169,7 @@ export default {
           if (response.data.success == false) {
             alert(response.data.message);
           } else {
-            alert("세계지수 소급을 완료하였습니다.");
+            alert("소급을 완료하였습니다.");
           }
         });
     },

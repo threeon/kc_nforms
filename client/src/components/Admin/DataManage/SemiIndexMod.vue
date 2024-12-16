@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar color="white">
-      <v-toolbar-title>세계지수 (M193HBASED :수정)</v-toolbar-title>
+      <v-toolbar-title>반도체지수 (M203HBASED :수정)</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md pa-0 ma-0>
@@ -59,6 +59,7 @@
                               <th>F15010</th>
                               <th>F15011</th>
                               <th>F15001</th>
+                              <th>F15015</th>
                               <th>F15472</th>
                               <th>F15004</th>
                               <th>F15006</th>
@@ -75,6 +76,7 @@
                               <td>{{ item.F15010 }}</td>
                               <td>{{ item.F15011 }}</td>
                               <td>{{ item.F15001 }}</td>
+                              <td>{{ item.F15015 }}</td>
                               <td>{{ item.F15472 }}</td>
                               <td>{{ item.F15004 }}</td>
                               <td>{{ item.F15006 }}</td>
@@ -112,14 +114,14 @@
 <script>
 import Config from "@/js/config.js";
 import Util from "@/js/util.js";
-import UpdateModal from "./WorldIndexModModal.vue";
+import UpdateModal from "./SemiIndexModModal.vue";
 
 export default {
   data() {
     return {
       sdate: "",
       edate: "",
-      jcode: ".IRTS",
+      jcode: "D5-16G2-4800-S",
       itemList: [],
       updateFlag: false,
       editedItem: {},
@@ -150,6 +152,7 @@ export default {
         F15010: "",
         F15011: "",
         F15001: "",
+        F15015: "",
         F15472: "",
         F15004: "",
         F15006: "",
@@ -166,7 +169,7 @@ export default {
       let vm = this;
       axios
         .post(
-          Config.base_url + "/api/datamanage/worldindex/deleteitem",
+          Config.base_url + "/api/datamanage/semiindex/deleteitem",
           item
         )
         .then(function (response) {
@@ -185,7 +188,7 @@ export default {
       vm.itemList = [];
       // console.log("getList");
       axios
-        .get(Config.base_url + "/api/datamanage/worldindex/getitemlist", {
+        .get(Config.base_url + "/api/datamanage/semiindex/getitemlist", {
           params: {
             sdate: vm.sdate,
             edate: vm.edate,
@@ -210,6 +213,7 @@ export default {
               item.F15010 = tList[i].f15010;
               item.F15011 = tList[i].f15011;
               item.F15001 = tList[i].f15001;
+              item.F15015 = tList[i].f15015;
               item.F15472 = tList[i].f15472;
               item.F15004 = tList[i].f15004;
               item.F15006 = tList[i].f15006;

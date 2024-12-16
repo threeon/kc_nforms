@@ -8,6 +8,10 @@ import BondIndexUpload from "@/components/Admin/DataManage/BondIndexUpload.vue";
 import BondIndexMod from "@/components/Admin/DataManage/BondIndexMod.vue";
 import WorldIndexUpload from "@/components/Admin/DataManage/WorldIndexUpload.vue";
 import WorldIndexMod from "@/components/Admin/DataManage/WorldIndexMod.vue";
+import SemiMasterUpload from "@/components/Admin/DataManage/SemiMasterUpload.vue";
+import SemiMasterMod from "@/components/Admin/DataManage/SemiMasterMod.vue";
+import SemiIndexUpload from "@/components/Admin/DataManage/SemiIndexUpload.vue";
+import SemiIndexMod from "@/components/Admin/DataManage/SemiIndexMod.vue";
 
 // ETP DB DATA MANAGE
 import M054udate from "@/components/Admin/Migration/M054udate.vue";
@@ -34,6 +38,10 @@ export default [
       { path: "bondindexmod", component: BondIndexMod },
       { path: "worldindexupload", component: WorldIndexUpload },
       { path: "worldindexmod", component: WorldIndexMod },
+      { path: "semimasterupload", component: SemiMasterUpload },
+      { path: "semimastermod", component: SemiMasterMod },
+      { path: "semiindexupload", component: SemiIndexUpload },
+      { path: "semiindexmod", component: SemiIndexMod },
       // MIGRATION
       { path: "migration/m054udate", component: M054udate },
       // ETP DB DATA MANAGE
