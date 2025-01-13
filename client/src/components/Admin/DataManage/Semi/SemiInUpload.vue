@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar color="white">
-      <v-toolbar-title>반도체지수 소급 (M203HBASED : 업로드)</v-toolbar-title>
+      <v-toolbar-title>반도체지수 소급 (M203UBASEDIN : 업로드)</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md pa-0 ma-0>
@@ -29,6 +29,9 @@
                 <v-layout wrap>
                   <v-flex xs12>
                     <div>
+                      (* 메모리 및 hbased 테이블에는 08:30 / 13:00 / 16:30 / 20:00 업데이트 됩니다.)
+                    </div>
+                    <div>
                       (* 총
                       <span style="color: red">{{ itemList.length }} </span>건이
                       선택되었습니다. 업로드시 {{ insertTime }} 분 정도
@@ -45,7 +48,6 @@
                             <tr>
                               <th>일자</th>
                               <th>종목코드</th>
-                              <th>F18025</th>
                               <th>F15009</th>
                               <th>F15010</th>
                               <th>F15011</th>
@@ -60,7 +62,6 @@
                             <tr v-for="(item, index) in itemList" :key="index">
                               <td>{{ item.F12506 }}</td>
                               <td>{{ item.F16013 }}</td>
-                              <td>{{ item.F18025 }}</td>
                               <td>{{ item.F15009 }}</td>
                               <td>{{ item.F15010 }}</td>
                               <td>{{ item.F15011 }}</td>
@@ -127,11 +128,11 @@ export default {
 
         // sheet1만 사용
         const toJson = xlsx.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+        console.log(toJson)
         for (let i = 0; i < toJson.length; i++) {
           let tobj = {
             F16013: "",
             F12506: "",
-            F18025: "",
             F15009: "",
             F15010: "",
             F15011: "",
@@ -143,7 +144,7 @@ export default {
           };
           for (let j = 0; j < Object.keys(toJson[i]).length; j++) {
             tobj[Object.keys(tobj)[j]] = (
-              "" + toJson[i][Object.keys(toJson[i])[j]]
+              "" + toJson[i][Object.keys(tobj)[j]]
             ).trim();
           }
           console.log(tobj);
@@ -161,11 +162,11 @@ export default {
     excelUpload: function () {
       let vm = this;
       axios
-        .post(Config.base_url + "/api/datamanage/semiindex/excelupload", {
+        .post(Config.base_url + "/api/datamanage/semiin/excelupload", {
           itemList: vm.itemList,
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           if (response.data.success == false) {
             alert(response.data.message);
           } else {

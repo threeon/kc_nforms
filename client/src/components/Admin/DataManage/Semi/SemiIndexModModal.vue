@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" persistent max-width="800px">
     <v-card>
       <v-card-title>
-        <span class="headline">반도체지수 정보 수정</span>
+        <span class="headline">반도체지수(M203HBASED :수정)</span>
       </v-card-title>
 
       <v-card-text>
@@ -112,7 +112,7 @@ export default {
       let vm = this;
       axios
         .post(
-          Config.base_url + "/api/datamanage/worldindex/updateitem",
+          Config.base_url + "/api/datamanage/semiindex/updateitem",
           vm.editedItem
         )
         .then(function (response) {

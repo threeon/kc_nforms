@@ -121,7 +121,7 @@ export default {
           };
           for (let j = 0; j < Object.keys(toJson[i]).length; j++) {
             tobj[Object.keys(tobj)[j]] = (
-              "" + toJson[i][Object.keys(toJson[i])[j]]
+              "" + toJson[i][Object.keys(tobj)[j]]
             ).trim();
           }
           // console.log(tobj);
@@ -143,7 +143,7 @@ export default {
           itemList: vm.itemList,
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           if (response.data.success == false) {
             alert(response.data.message);
           } else {

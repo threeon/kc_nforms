@@ -4,7 +4,7 @@
     app
     :permanent="showDrawer"
     clipped
-    width="300"
+    width="320"
     class="drawer-style"
     id="style-1"
   >
@@ -103,7 +103,7 @@ export default {
       fullItems: [
         {
           action: "storage",
-          title: "정보-DB 데이터 관리",
+          title: "정보_DB - 데이터 관리",
           active: true,
           level: "NORMAL",
           subitems: [
@@ -125,27 +125,43 @@ export default {
               title: "006. 세계지수 (수정)",
               link: "/admintool/worldindexmod",
             },
+          ],
+        },
+        {
+          action: "storage",
+          title: "정보_DB - 데이터 관리(반도체)",
+          active: false,
+          level: "NORMAL",
+          subitems: [
             {
-              title: "007. 반도체지수 마스터 (업로드)",
+              title: "001. M203HREFE (업로드)",
               link: "/admintool/semimasterupload",
             },
             {
-              title: "008. 반도체지수 마스터(수정)",
+              title: "002. M203HREFE(수정)",
               link: "/admintool/semimastermod",
             },
             {
-              title: "009. 반도체지수 (업로드)",
+              title: "003. M203UBASEDIN (업로드)",
+              link: "/admintool/semiinupload",
+            },
+            {
+              title: "004. M203UBASEDIN (수정)",
+              link: "/admintool/semiinmod",
+            },
+            {
+              title: "005. M203HBASED (업로드)",
               link: "/admintool/semiindexupload",
             },
             {
-              title: "010. 반도체지수 (수정)",
+              title: "006. M203HBASED (수정)",
               link: "/admintool/semiindexmod",
             },
           ],
         },
         {
           action: "fence",
-          title: "정보-DB 플랫폼 이관",
+          title: "정보_DB - 플랫폼 이관",
           active: false,
           level: "NORMAL",
           subitems: [
@@ -157,7 +173,7 @@ export default {
         },
         {
           action: "dataset",
-          title: "ETP-DB 데이터 관리",
+          title: "ETP_DB 데이터 관리",
           active: false,
           level: "NORMAL",
           subitems: [
