@@ -23,7 +23,7 @@ let getItemList = async function (req, res) {
 
 	let tstr = `SELECT F12506, TRIM(F16013) AS F16013,
     F15009, F15010, F15011, F15001, F15015,
-    F15472, F15004, F15006
+    F15472, F15004, F15006, INPUT_DATE
     FROM DBSUPER.M203UBASEDIN
     WHERE F12506 >= ${sdate}
     AND F12506 <= ${edate} ${jstr}
@@ -86,7 +86,8 @@ const insertXdbOne = async function (dobj) {
           F15015 = ${dobj.F15015},
           F15472 = ${dobj.F15472},
           F15004 = ${dobj.F15004},
-          F15006 = ${dobj.F15006}
+          F15006 = ${dobj.F15006},
+          INPUT_DATE = TO_CHAR(SYSDATE, 'YYYYMMDD')
         WHERE F12506 = ${dobj.F12506}
         AND F16013 = '${dobj.F16013}'
       `;

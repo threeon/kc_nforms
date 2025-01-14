@@ -62,6 +62,7 @@
                               <th>F15472</th>
                               <th>F15004</th>
                               <th>F15006</th>
+                              <th>INPUT_DATE</th>
                               <th>UPDATE</th>
                               <th>DELETE</th>
                             </tr>
@@ -78,6 +79,7 @@
                               <td>{{ item.F15472 }}</td>
                               <td>{{ item.F15004 }}</td>
                               <td>{{ item.F15006 }}</td>
+                              <td>{{ item.INPUT_DATE }}</td>
                               <td>
                                 <v-icon @click="updateItem(item, index)">
                                   edit
@@ -153,7 +155,7 @@ export default {
         F15472: "",
         F15004: "",
         F15006: "",
-
+        INPUT_DATE: "",
       };
       this.updateFlag = true;
     },
@@ -213,6 +215,7 @@ export default {
               item.F15472 = tList[i].f15472;
               item.F15004 = tList[i].f15004;
               item.F15006 = tList[i].f15006;
+              item.INPUT_DATE = tList[i].inputDate;
               vm.itemList.push(item);
               // console.log(item);
             }
