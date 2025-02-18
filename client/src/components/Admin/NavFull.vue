@@ -107,24 +107,66 @@ export default {
           active: true,
           level: "NORMAL",
           subitems: [
-            { title: "001. RIC CHANGE", link: "/admintool/ricchange" },
-            { title: "002. 리포트 종목연동", link: "/admintool/reportcode" },
-            {
-              title: "003. 채권지수 소급 (업로드)",
-              link: "/admintool/bondindexupload",
+            { 
+              title: "001. RIC CHANGE", 
+              link: "/admintool/ricchange" 
+            },
+            { 
+              title: "002. 리포트 종목연동", 
+              link: "/admintool/reportcode" 
             },
             {
-              title: "004. 채권지수 소급 (수정)",
-              link: "/admintool/bondindexmod",
-            },
-            {
-              title: "005. 세계지수 (업로드)",
+              title: "003. 세계지수 (업로드)",
               link: "/admintool/worldindexupload",
             },
             {
-              title: "006. 세계지수 (수정)",
+              title: "004. 세계지수 (수정)",
               link: "/admintool/worldindexmod",
             },
+          ],
+        },
+        {
+          action: "storage",
+          title: "정보_DB - 데이터 관리(채권)",
+          active: false,
+          level: "NORMAL",
+          subitems: [
+            {
+              title: "001. 채권지수 소급 (업로드)",
+              link: "/admintool/bond/bondindexupload",
+            },
+            {
+              title: "002. 채권지수 소급 (수정)",
+              link: "/admintool/bond/bondindexmod",
+            },
+            {
+              title: "003. M058HADRE (업로드)",
+              link: "/admintool/bond/m058hadreupload",
+            },
+            {
+              title: "004. M058HADRE (조회)",
+              link: "/admintool/bond/m058hadre",
+            },
+            {
+              title: "005. M058HFRNREFE (업로드)",
+              link: "/admintool/bond/m058hfrnrefeupload",
+            },
+            {
+              title: "006. M058HFRNREFE (조회)",
+              link: "/admintool/bond/m058hfrnrefe",
+            },
+            {
+              title: "007. M058HFRNCSFW (업로드)",
+              link: "/admintool/bond/m058hfrncsfwupload",
+            },
+            {
+              title: "008. M058HFRNCSFW (조회)",
+              link: "/admintool/bond/m058hfrncsfw",
+            },
+            // {
+            //   title: "004. 세계지수 (수정)",
+            //   link: "/admintool/worldindexmod",
+            // },
           ],
         },
         {

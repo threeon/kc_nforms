@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar color="white">
-      <v-toolbar-title>채권지수 소급 (업로드)</v-toolbar-title>
+      <v-toolbar-title>M058HFRNREFE (업로드)</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md pa-0 ma-0>
@@ -43,34 +43,42 @@
                         <table>
                           <thead>
                             <tr>
-                              <th>일자</th>
-                              <th>종목코드</th>
-                              <th>F30792</th>
-                              <th>F30791</th>
-                              <th>F30925</th>
-                              <th>F30646</th>
-                              <th>F30927</th>
-                              <th>F16188</th>
-                              <th>F30797</th>
-                              <th>F30798</th>
-                              <th>F30799</th>
-                              <th>F30923</th>
+                              <th>F16013</th>
+                              <th>FRN_TYPE</th>
+                              <th>REF_RATE_1</th>
+                              <th>REF_RATE_2</th>
+                              <th>REF_RATE_3</th>
+                              <th>REF_RATE_4</th>
+                              <th>REF_RATE_5</th>
+                              <th>LOOKBACK</th>
+                              <th>ROUNDING</th>
+                              <th>ROUNDING_RULE</th>
+                              <th>FLOOR_RULE</th>
+                              <th>FLOOR_RATE</th>
+                              <th>HOL_LOC</th>
+                              <th>RESET_TYPE</th>
+                              <th>FIXED_YEAR</th>
+                              <th>FRN_SPEC</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr v-for="(item, index) in itemList" :key="index">
-                              <td>{{ item.F12506 }}</td>
                               <td>{{ item.F16013 }}</td>
-                              <td>{{ item.F30792 }}</td>
-                              <td>{{ item.F30791 }}</td>
-                              <td>{{ item.F30925 }}</td>
-                              <td>{{ item.F30646 }}</td>
-                              <td>{{ item.F30927 }}</td>
-                              <td>{{ item.F16188 }}</td>
-                              <td>{{ item.F30797 }}</td>
-                              <td>{{ item.F30798 }}</td>
-                              <td>{{ item.F30799 }}</td>
-                              <td>{{ item.F30923 }}</td>
+                              <td>{{ item.FRN_TYPE }}</td>
+                              <td>{{ item.REF_RATE_1 }}</td>
+                              <td>{{ item.REF_RATE_2 }}</td>
+                              <td>{{ item.REF_RATE_3 }}</td>
+                              <td>{{ item.REF_RATE_4 }}</td>
+                              <td>{{ item.REF_RATE_5 }}</td>
+                              <td>{{ item.LOOKBACK }}</td>
+                              <td>{{ item.ROUNDING }}</td>
+                              <td>{{ item.ROUNDING_RULE }}</td>
+                              <td>{{ item.FLOOR_RULE }}</td>
+                              <td>{{ item.FLOOR_RATE }}</td>
+                              <td>{{ item.HOL_LOC }}</td>
+                              <td>{{ item.RESET_TYPE }}</td>
+                              <td>{{ item.FIXED_YEAR }}</td>
+                              <td>{{ item.FRN_SPEC }}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -127,26 +135,37 @@ export default {
         // });
 
         // sheet1만 사용
-        const toJson = xlsx.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+        const toJson = xlsx.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], {
+          cellDates: true,
+          raw: false,
+        });
         for (let i = 0; i < toJson.length; i++) {
           let tobj = {
-            F12506: "",
-            F16013: "",
-            F30792: "",
-            F30791: "",
-            F30925: "",
-            F30646: "",
-            F30927: "",
-            F16188: "",
-            F30797: "",
-            F30798: "",
-            F30799: "",
-            F30923: "",
+            F16013 : "",
+              FRN_TYPE : "",
+              REF_RATE_1 : "",
+              REF_RATE_2 : "",
+              REF_RATE_3 : "",
+              REF_RATE_4 : "",
+              REF_RATE_5 : "",
+              LOOKBACK : "",
+              ROUNDING : "",
+              ROUNDING_RULE : "",
+              FLOOR_RULE : "",
+              FLOOR_RATE : "",
+              HOL_LOC : "",
+              RESET_TYPE : "",
+              FIXED_YEAR : "",
+              FRN_SPEC : "",
           };
+          // console.log(toJson);
           for (let j = 0; j < Object.keys(toJson[i]).length; j++) {
             tobj[Object.keys(tobj)[j]] = (
               "" + toJson[i][Object.keys(toJson[i])[j]]
             ).trim();
+
+            // console.log("["+j+"] " + Object.keys(tobj)[j]);
+            // console.log("["+j+"] " + toJson[i][Object.keys(toJson[i])[j]]);
           }
           vm.itemList.push(tobj);
           // console.log(tobj);
@@ -162,15 +181,15 @@ export default {
     excelUpload: function () {
       let vm = this;
       axios
-        .post(Config.base_url + "/api/datamanage/bondindex/excelupload", {
+        .post(Config.base_url + "/api/datamanage/bond/m058hfrnrefe/excelupload", {
           itemList: vm.itemList,
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           if (response.data.success == false) {
             alert(response.data.message);
           } else {
-            alert("채권지수 소급을 완료하였습니다.");
+            alert("M058HFRNREFE 소급을 완료하였습니다.");
           }
         });
     },

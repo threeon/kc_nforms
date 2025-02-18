@@ -4,6 +4,6 @@
 
 module.exports = {
   env: "test",
-  base_url: "http://nformstest.koscom.co.kr",
+  base_url: "https://nformstest.koscom.co.kr",
   home_url: "/admintool",
 };

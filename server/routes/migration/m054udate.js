@@ -20,7 +20,7 @@ let getData = async function (req, res) {
     `;
 
 	// console.log(tstr);
-	let result = await infoDb.run("xdb", tstr);
+	let result = await infoDb.run("xdb", tstr, 1);
 	// console.log(result);
 	res.json({ success: true, results: result.resultList });
 };

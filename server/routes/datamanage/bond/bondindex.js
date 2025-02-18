@@ -4,11 +4,11 @@
  * @date 2023-10-27
  * @author ThreeOn
  */
-const infoDb = require("../common/asyncInfoDb");
+const infoDb = require("../../common/asyncInfoDb");
 
 let getItemList = async function (req, res) {
 	console.log(
-		"/api/datamanage/worldindex/getitemlist : /datamanage/worldindex 안에 있는 getItemList 호출됨."
+		"/api/datamanage/bondidx/getitemlist : /datamanage/bondindex 안에 있는 getItemList 호출됨."
 	);
 	let sdate = "";
 	let edate = "";
@@ -22,9 +22,9 @@ let getItemList = async function (req, res) {
 	if (jcode.length > 0) jstr = `AND F16013 = '${jcode}' `;
 
 	let tstr = `SELECT F12506, TRIM(F16013) AS F16013, 
-    F18025, F15009, F15010, F15011, F15001,
-    F15472, F15004, F15006
-    FROM DBSUPER.M193HBASED
+    F30792, F30791, F30925, F30646, F30927,
+    F16188, F30797, F30798, F30799, F30923
+    FROM DBSUPER.M045UBASEIN 
     WHERE F12506 >= '${sdate}'
     AND F12506 <= '${edate}' ${jstr}
     ORDER BY F12506 DESC
@@ -38,7 +38,7 @@ let getItemList = async function (req, res) {
 
 let excelUpload = async function (req, res) {
 	console.log(
-		"/api/datamanage/worldindex/excelupload : /datamanage/worldindex 안에 있는 excelUpload 호출됨."
+		"/api/datamanage/bondindex/excelupload : /datamanage/bondindex 안에 있는 excelUpload 호출됨."
 	);
 
 	let param = req.body;
@@ -63,7 +63,7 @@ let excelUpload = async function (req, res) {
 const insertXdbOne = async function (dobj) {
 	// dobj.F33965 = 2001;
 	let tstr = `SELECT F12506, F16013
-      FROM DBSUPER.M193HBASED
+      FROM DBSUPER.M045UBASEIN
       WHERE F12506 = ${dobj.F12506}
       AND trim(F16013) = '${dobj.F16013}'
       `;
@@ -78,45 +78,64 @@ const insertXdbOne = async function (dobj) {
 	// 값이 없으면 INERT
 	if (res.resultCode == "success" && res.resultList.length >= 1) {
 		// UPDATE
-		tstr = `UPDATE DBSUPER.M193HBASED SET
-          F18025 = '${dobj.F18025}'
-          ,F15009 = '${dobj.F15009}'
-          ,F15010 = '${dobj.F15010}'
-          ,F15011 = '${dobj.F15011}'
-          ,F15001 = '${dobj.F15001}'
-          ,F15472 = '${dobj.F15472}'
-          ,F15004 = '${dobj.F15004}'
-          ,F15006 = '${dobj.F15006}'
+		tstr = `UPDATE DBSUPER.M045UBASEIN SET
+          F30792 = '${dobj.F30792}'
+          ,F30791 = '${dobj.F30791}'
+          ,F30925 = '${dobj.F30925}'
+          ,F30646 = '${dobj.F30646}'
+          ,F30927 = '${dobj.F30927}'
+          ,F16188 = '${dobj.F16188}'
+          ,F30797 = '${dobj.F30797}'
+          ,F30798 = '${dobj.F30798}'
+          ,F30799 = '${dobj.F30799}'
+          ,F30923 = '${dobj.F30923}'
         WHERE F12506 = '${dobj.F12506}'
         AND F16013 = '${dobj.F16013}'
       `;
 	} else {
 		// INSERT
-		tstr = `INSERT INTO DBSUPER.M193HBASED (
+		tstr = `INSERT INTO DBSUPER.M045UBASEIN (
       F12506, F16013, 
-      F18025, F15009, F15010, F15011, F15001,
-      F15472, F15004, F15006
+      F30792, F30791, F30925, F30646, F30927,
+      F16188, F30797, F30798, F30799, F30923
     ) VALUES ('${dobj.F12506}', '${dobj.F16013}', 
-    '${dobj.F18025}', '${dobj.F15009}', '${dobj.F15010}', '${dobj.F15011}', '${dobj.F15001}',
-    '${dobj.F15472}', '${dobj.F15004}', '${dobj.F15006}'
+    '${dobj.F30792}', '${dobj.F30791}', '${dobj.F30925}', '${dobj.F30646}', '${dobj.F30927}',
+    '${dobj.F16188}', '${dobj.F30797}', '${dobj.F30798}', '${dobj.F30799}', '${dobj.F30923}'
     )`;
-  }
-  console.log(tstr);
-  res = await infoDb.run("xdb", tstr, 1);
-  console.log(res);
-  return res;
+	}
+	res = await infoDb.run("xdb", tstr, 1);
+	if (res.resultCode != "success") {
+		console.log("[excelUpload] INFO DB FAIL : " + tstr, dobj);
+	} else {
+		// console.log("[excelUpload] INFO DB : " + tstr, res);
+	}
 };
 
 let updateItem = async function (req, res) {
 	console.log(
-		"/api/datamanage/worldindex/updateitem : /datamanage/worldindex 안에 있는 updateItem 호출됨."
+		"/api/datamanage/bondindex/updateitem : /datamanage/bondindex 안에 있는 updateItem 호출됨."
 	);
 
+	let tstr = "";
 	let dobj = req.body;
 	// console.log(dobj);
-  let result = await insertXdbOne(dobj);
+	tstr = `UPDATE DBSUPER.M045UBASEIN SET
+      F30792 = '${dobj.F30792}'
+      ,F30791 = '${dobj.F30791}'
+      ,F30925 = '${dobj.F30925}'
+      ,F30646 = '${dobj.F30646}'
+      ,F30927 = '${dobj.F30927}'
+      ,F16188 = '${dobj.F16188}'
+      ,F30797 = '${dobj.F30797}'
+      ,F30798 = '${dobj.F30798}'
+      ,F30799 = '${dobj.F30799}'
+      ,F30923 = '${dobj.F30923}'
+    WHERE F12506 = '${dobj.F12506}'
+    AND F16013 = '${dobj.F16013}'
+  `;
+	let result = await infoDb.run("xdb", tstr, 1);
 	if (result.resultCode != "success") {
-		console.log("[updateItem] INFO DB : ", dobj);
+		console.log("[updateItem] INFO DB : " + tstr, dobj);
 		res.json({ success: false, message: "UPDATE 실패했습니다." });
 	} else {
 		// console.log("[updateItem] INFO DB FAIL : " + tstr, dobj);
@@ -124,33 +143,6 @@ let updateItem = async function (req, res) {
 	}
 };
 
-let deleteItem = async function (req, res) {
-	console.log(
-		"/api/datamanage/worldindex/deleteitem : /datamanage/worldindex 안에 있는 deleteItem 호출됨."
-	);
-
-	let dobj = req.body;
-	// console.log(dobj);
-
-	let tstr = `DELETE
-    FROM DBSUPER.M193HBASED
-    WHERE F12506 = '${dobj.F12506}'
-    AND F16013 = '${dobj.F16013}'
-  `;
-
-  let result = await infoDb.run("xdb", tstr, 1);
-  // console.log(result);
-  
-	if (result.resultCode != "success") {
-		console.log("[deleteItem] INFO DB : ", dobj);
-		res.json({ success: false, message: "DELETE 실패했습니다." });
-	} else {
-		// console.log("[deleteItem] INFO DB FAIL : " + tstr, dobj);
-		res.json({ success: true, results: [] });
-	}
-};
-
 module.exports.getItemList = getItemList;
-module.exports.updateItem = updateItem;
-module.exports.deleteItem = deleteItem;
 module.exports.excelUpload = excelUpload;
+module.exports.updateItem = updateItem;

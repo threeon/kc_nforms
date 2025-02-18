@@ -4,11 +4,11 @@
  * @date 2023-10-27
  * @author ThreeOn
  */
-const infoDb = require("../common/asyncInfoDb");
+const infoDb = require("../../common/asyncInfoDb");
 
 let getItemList = async function (req, res) {
 	console.log(
-		"/api/datamanage/semiin/getitemlist : /datamanage/semiin 안에 있는 getItemList 호출됨."
+		"/api/datamanage/semiindex/getitemlist : /datamanage/semiindex 안에 있는 getItemList 호출됨."
 	);
 	let sdate = "";
 	let edate = "";
@@ -21,10 +21,10 @@ let getItemList = async function (req, res) {
 
 	if (jcode.length > 0) jstr = `AND F16013 = '${jcode}' `;
 
-	let tstr = `SELECT F12506, TRIM(F16013) AS F16013,
+	let tstr = `SELECT F12506, TRIM(F16013) AS F16013, F18025,
     F15009, F15010, F15011, F15001, F15015,
-    F15472, F15004, F15006, INPUT_DATE
-    FROM DBSUPER.M203UBASEDIN
+    F15472, F15004, F15006
+    FROM DBSUPER.M203HBASED
     WHERE F12506 >= ${sdate}
     AND F12506 <= ${edate} ${jstr}
     ORDER BY F12506 DESC
@@ -32,14 +32,14 @@ let getItemList = async function (req, res) {
     `;
 
 	// console.log(tstr);
-	let result = await infoDb.run("xdb", tstr);
+	let result = await infoDb.run("xdb", tstr, 1);
 	// console.log(result);
 	res.json({ success: true, results: result.resultList });
 };
 
 let excelUpload = async function (req, res) {
 	console.log(
-		"/api/datamanage/semiin/excelupload : /datamanage/semiin 안에 있는 excelUpload 호출됨."
+		"/api/datamanage/semiindex/excelupload : /datamanage/semiindex 안에 있는 excelUpload 호출됨."
 	);
 
 	let param = req.body;
@@ -56,14 +56,14 @@ let excelUpload = async function (req, res) {
 	// console.log(param);
 	res.json({ success: true, results: [] });
 	console.log(
-		"/api/datamanage/semiin/excelupload : /datamanage/semiin 안에 있는 excelUpload 완료됨."
+		"/api/datamanage/semiindex/excelupload : /datamanage/semiindex 안에 있는 excelUpload 완료됨."
 	);
 };
 
 // Altibase DBMS 는 insert Or update 가 안됨
 const insertXdbOne = async function (dobj) {
 	let tstr = `SELECT F12506, F16013
-      FROM DBSUPER.M203UBASEDIN
+      FROM DBSUPER.M203HBASED
       WHERE F12506 = ${dobj.F12506}
       AND trim(F16013) = '${dobj.F16013}'
       `;
@@ -72,13 +72,14 @@ const insertXdbOne = async function (dobj) {
 	// console.log("insertXdbOne Start......");
 	// console.log("-------------------------------------------------");
 	// console.log(tstr);
-	let res = await infoDb.run("xdb", tstr);
+	let res = await infoDb.run("xdb", tstr, 1);
 	// console.log(res);
 	// 값이 있고, 같으면 return, 없으면 UPDATE
 	// 값이 없으면 INERT
 	if (res.resultCode == "success" && res.resultList.length >= 1) {
 		// UPDATE
-		tstr = `UPDATE DBSUPER.M203UBASEDIN SET
+		tstr = `UPDATE DBSUPER.M203HBASED SET
+          F18025 = ${dobj.F18025},
           F15009 = ${dobj.F15009},
           F15010 = ${dobj.F15010},
           F15011 = ${dobj.F15011},
@@ -86,33 +87,30 @@ const insertXdbOne = async function (dobj) {
           F15015 = ${dobj.F15015},
           F15472 = ${dobj.F15472},
           F15004 = ${dobj.F15004},
-          F15006 = ${dobj.F15006},
-          INPUT_DATE = TO_CHAR(SYSDATE, 'YYYYMMDD')
+          F15006 = ${dobj.F15006}
         WHERE F12506 = ${dobj.F12506}
         AND F16013 = '${dobj.F16013}'
       `;
 	} else {
 		// INSERT
-		tstr = `INSERT INTO DBSUPER.M203UBASEDIN (
-      F12506, F16013,
+		tstr = `INSERT INTO DBSUPER.M203HBASED (
+      F12506, F16013, F18025,
       F15009, F15010, F15011, F15001, F15015,
-      F15472, F15004, F15006,
-      MID, MARKET, TYPE, INPUT_DATE
-    ) VALUES ('${dobj.F12506}', '${dobj.F16013}',
+      F15472, F15004, F15006
+    ) VALUES ('${dobj.F12506}', '${dobj.F16013}', '${dobj.F18025}', 
     '${dobj.F15009}', '${dobj.F15010}', '${dobj.F15011}', '${dobj.F15001}','${dobj.F15015}', 
-    '${dobj.F15472}', '${dobj.F15004}', '${dobj.F15006}',
-    203, 'SEM', 1, TO_CHAR(SYSDATE, 'YYYYMMDD')
+    '${dobj.F15472}', '${dobj.F15004}', '${dobj.F15006}'
     )`;
   }
   console.log(tstr);
-  res = await infoDb.run("xdb", tstr);
+  res = await infoDb.run("xdb", tstr, 1);
   console.log(res);
   return res;
 };
 
 let updateItem = async function (req, res) {
 	console.log(
-		"/api/datamanage/semiin/updateitem : /datamanage/semiin 안에 있는 updateItem 호출됨."
+		"/api/datamanage/semiindex/updateitem : /datamanage/semiindex 안에 있는 updateItem 호출됨."
 	);
 
 	let dobj = req.body;
@@ -129,19 +127,19 @@ let updateItem = async function (req, res) {
 
 let deleteItem = async function (req, res) {
 	console.log(
-		"/api/datamanage/semiin/deleteitem : /datamanage/semiin 안에 있는 deleteItem 호출됨."
+		"/api/datamanage/semiindex/deleteitem : /datamanage/semiindex 안에 있는 deleteItem 호출됨."
 	);
 
 	let dobj = req.body;
 	// console.log(dobj);
 
 	let tstr = `DELETE
-    FROM DBSUPER.M203UBASEDIN
+    FROM DBSUPER.M203HBASED
     WHERE F12506 = '${dobj.F12506}'
     AND F16013 = '${dobj.F16013}'
   `;
 
-  let result = await infoDb.run("xdb", tstr);
+  let result = await infoDb.run("xdb", tstr, 1);
   // console.log(result);
   
 	if (result.resultCode != "success") {

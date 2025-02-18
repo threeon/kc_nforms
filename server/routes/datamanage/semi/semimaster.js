@@ -4,7 +4,7 @@
  * @date 2023-10-27
  * @author ThreeOn
  */
-const infoDb = require("../common/asyncInfoDb");
+const infoDb = require("../../common/asyncInfoDb");
 
 let getItemList = async function (req, res) {
 	console.log(
@@ -18,7 +18,7 @@ let getItemList = async function (req, res) {
     `;
 
 	// console.log(tstr);
-	let result = await infoDb.run("xdb", tstr);
+	let result = await infoDb.run("xdb", tstr, 1);
 	// console.log(result);
 	res.json({ success: true, results: result.resultList });
 };
@@ -57,7 +57,7 @@ const insertXdbOne = async function (dobj) {
 	// console.log("insertXdbOne Start......");
 	// console.log("-------------------------------------------------");
 	// console.log(tstr);
-	let res = await infoDb.run("xdb", tstr);
+	let res = await infoDb.run("xdb", tstr, 1);
 	// console.log(res);
 	// 값이 있고, 같으면 return, 없으면 UPDATE
 	// 값이 없으면 INERT
@@ -82,7 +82,7 @@ const insertXdbOne = async function (dobj) {
     )`;
   }
   // console.log(tstr);
-  res = await infoDb.run("xdb", tstr);
+  res = await infoDb.run("xdb", tstr, 1);
   // console.log(res);
   return res;
 };
@@ -117,7 +117,7 @@ let deleteItem = async function (req, res) {
     WHERE F16013 = '${dobj.F16013}'
   `;
 
-  let result = await infoDb.run("xdb", tstr);
+  let result = await infoDb.run("xdb", tstr, 1);
   // console.log(result);
   
 	if (result.resultCode != "success") {

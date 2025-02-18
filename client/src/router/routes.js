@@ -4,10 +4,19 @@ import AdminHome from "@/components/Admin/AdminHome.vue";
 // 정보 DB DATA MANAGE
 import RicChange from "@/components/Admin/DataManage/RicChange.vue";
 import ReportCode from "@/components/Admin/DataManage/ReportCode.vue";
-import BondIndexUpload from "@/components/Admin/DataManage/BondIndexUpload.vue";
-import BondIndexMod from "@/components/Admin/DataManage/BondIndexMod.vue";
 import WorldIndexUpload from "@/components/Admin/DataManage/WorldIndexUpload.vue";
 import WorldIndexMod from "@/components/Admin/DataManage/WorldIndexMod.vue";
+
+// 정보 DB DATA MANAGE (BOND)
+import BondIndexUpload from "@/components/Admin/DataManage/Bond/BondIndexUpload.vue";
+import BondIndexMod from "@/components/Admin/DataManage/Bond/BondIndexMod.vue";
+import M058HadreUpload from "@/components/Admin/DataManage/Bond/M058HadreUpload.vue";
+import M058Hadre from "@/components/Admin/DataManage/Bond/M058Hadre.vue";
+import M058HfrnrefeUpload from "@/components/Admin/DataManage/Bond/M058HfrnrefeUpload.vue";
+import M058Hfrnrefe from "@/components/Admin/DataManage/Bond/M058Hfrnrefe.vue";
+import M058HfrncsfwUpload from "@/components/Admin/DataManage/Bond/M058HfrncsfwUpload.vue";
+import M058Hfrncsfw from "@/components/Admin/DataManage/Bond/M058Hfrncsfw.vue";
+
 // 정보 DB DATA MANAGE (반도체)
 import SemiMasterUpload from "@/components/Admin/DataManage/Semi/SemiMasterUpload.vue";
 import SemiMasterMod from "@/components/Admin/DataManage/Semi/SemiMasterMod.vue";
@@ -37,10 +46,17 @@ export default [
       // 정보DB DATA MANAGE
       { path: "ricchange", component: RicChange },
       { path: "reportcode", component: ReportCode },
-      { path: "bondindexupload", component: BondIndexUpload },
-      { path: "bondindexmod", component: BondIndexMod },
       { path: "worldindexupload", component: WorldIndexUpload },
       { path: "worldindexmod", component: WorldIndexMod },
+      // 정보DB DATA MANAGE(채권)
+      { path: "bond/bondindexupload", component: BondIndexUpload },
+      { path: "bond/bondindexmod", component: BondIndexMod },
+      { path: "bond/m058hadreupload", component: M058HadreUpload },
+      { path: "bond/m058hadre", component: M058Hadre },
+      { path: "bond/m058hfrnrefeupload", component: M058HfrnrefeUpload },
+      { path: "bond/m058hfrnrefe", component: M058Hfrnrefe },
+      { path: "bond/m058hfrncsfwupload", component: M058HfrncsfwUpload },
+      { path: "bond/m058hfrncsfw", component: M058Hfrncsfw },
       // 정보DB DATA MANAGE(반도체)
       { path: "semimasterupload", component: SemiMasterUpload },
       { path: "semimastermod", component: SemiMasterMod },
