@@ -76,10 +76,11 @@ export default {
 
         this.$EventBus.$emit("userLevelSet");
 
+/*
         setTimeout(() => {
           this.logout();
-          //}, 1000*6)
         }, 1000 * 60 * 30);
+*/
       } else {
         this.login_modal_flag = true;
       }

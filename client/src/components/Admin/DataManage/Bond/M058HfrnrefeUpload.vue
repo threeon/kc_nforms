@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar color="white">
-      <v-toolbar-title>M058HFRNREFE (업로드)</v-toolbar-title>
+      <v-toolbar-title>M058HFRNREFE (업로드) (대용량 데이터는 DB에 직접 업로드하시기 바랍니다.)</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md pa-0 ma-0>

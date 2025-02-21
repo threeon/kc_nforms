@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar color="white">
-      <v-toolbar-title>M058HFRNCSFW (업로드)</v-toolbar-title>
+      <v-toolbar-title>M058HFRNCSFW (업로드) (대용량 데이터는 DB에 직접 업로드하시기 바랍니다.)</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md pa-0 ma-0>
@@ -21,8 +21,8 @@
                     </div>
                   </v-flex>
                   <v-flex xs12 md4>
-                    <v-btn color="primary" dark @click.stop="excelUpload"
-                      >업로드
+                    <v-btn :color="uColor" dark @click.stop="excelUpload"
+                      >{{ uText }}
                     </v-btn>
                   </v-flex>
                 </v-layout>
@@ -109,6 +109,9 @@ export default {
       edate: "",
       itemList: [],
       insertTime: 0,
+      isUploadFlag: false,
+      uText: "업로드",
+      uColor: "primary",
     };
   },
   watch: {},
@@ -124,11 +127,13 @@ export default {
     selectExcel: function () {
       const xlsx = require("xlsx");
       let vm = this;
+      vm.itemList = [];
       const fileInfo = this.$refs.selectExcel.files[0];
 
       let reader = new FileReader();
 
       reader.onload = function () {
+
         const fileData = reader.result;
         const wb = xlsx.read(fileData, { type: "binary" });
 
@@ -144,6 +149,8 @@ export default {
           raw: false,
           // dateNF: "yyyy/mm/dd"
         });
+        let tList = [];
+        let checkFlag = true;
         for (let i = 0; i < toJson.length; i++) {
           let tobj = {
             F16013 : "",
@@ -174,12 +181,22 @@ export default {
             // console.log("["+j+"] " + Object.keys(tobj)[j]);
             // console.log("["+j+"] " + toJson[i][Object.keys(toJson[i])[j]]);
           }
-          vm.itemList.push(tobj);
+          if(vm.checkValue(tobj)) {
+            tList.push(tobj);
+          }else {
+            let msg = `엑셀 ${i+1} 행 오류 데이터 포함되어 있습니다.`;
+            alert(msg);
+            checkFlag = false;
+            break;
+          }
           // console.log(tobj);
           // if (i == 3) break;
         }
-        // 300건에 1분 정도 소요
-        vm.insertTime = Math.round(vm.itemList.length / 300);
+        if(checkFlag) {
+          vm.itemList = tList;
+          // 300건에 1분 정도 소요
+          vm.insertTime = Math.round(vm.itemList.length / 300);
+        }
       };
 
       reader.readAsBinaryString(fileInfo);
@@ -187,19 +204,41 @@ export default {
     },
     excelUpload: function () {
       let vm = this;
-      axios
-        .post(Config.base_url + "/api/datamanage/bond/m058hfrncsfw/excelupload", {
-          itemList: vm.itemList,
-        })
-        .then(function (response) {
-          // console.log(response);
-          if (response.data.success == false) {
-            alert(response.data.message);
-          } else {
-            alert("M058HFRNCSFW 소급을 완료하였습니다.");
-          }
-        });
+      if(this.isUploadFlag == false) {
+        this.isUploadFlag = true;
+        this.uText = "업로드 중입니다.........";
+        this.uColor = "warning";
+        axios
+          .post(Config.base_url + "/api/datamanage/bond/m058hfrncsfw/excelupload", {
+            itemList: vm.itemList,
+          })
+          .then(function (response) {
+            // console.log(response);
+            if (response.data.success == false) {
+              alert(response.data.message);
+            } else {
+              alert("M058HFRNCSFW 업로드를 완료하였습니다.");
+            }
+            vm.uText = "업로드";
+            vm.uColor = "primary";
+            vm.isUploadFlag = false;
+          });
+      }else {
+        alert("업로드 중입니다.");
+      }
     },
+    checkValue: function(tobj) {
+      if(tobj.F16013 == undefined || 
+        tobj.INT_DIV == undefined ||
+        tobj.PAYMENT_DATE == undefined) {
+          return false;
+      }
+
+      if(tobj.F16013.length != 12) return false;
+      if(tobj.PAYMENT_DATE.length != 8) return false;
+
+      return true;
+    }
   },
 };
 </script>

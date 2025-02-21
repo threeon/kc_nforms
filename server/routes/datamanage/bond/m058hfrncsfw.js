@@ -64,7 +64,7 @@ const insertXdbOne = async function (dobj) {
 	// console.log("-------------------------------------------------");
 	// console.log(tstr);
 	let res = await infoDb.run("xdb", tstr, 1);
-	console.log(res);
+	// console.log(res);
 	// 값이 있고, 같으면 return, 없으면 UPDATE
 	// 값이 없으면 INERT
 	if (res.resultCode == "success" && res.resultList.length >= 1) {
@@ -75,7 +75,7 @@ const insertXdbOne = async function (dobj) {
       AND PAYMENT_DATE = '${dobj.PAYMENT_DATE}'
       `;
     res = await infoDb.run("xdb", tstr, 1);
-    console.log(res);
+    // console.log(res);
     if (res.resultCode != "success") {
       console.log("[excelUpload] INFO DB FAIL : " + tstr, dobj);
       return;
@@ -96,7 +96,7 @@ const insertXdbOne = async function (dobj) {
   )`;
 
   res = await infoDb.run("xdb", tstr, 1);
-	console.log(res);
+	// console.log(res);
 	if (res.resultCode != "success") {
 		console.log("[excelUpload] INFO DB FAIL : " + tstr, dobj);
 	} else {
