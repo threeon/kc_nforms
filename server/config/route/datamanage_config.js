@@ -24,6 +24,7 @@ module.exports = [
   { file: "./datamanage/bond/m058hfrnrefe", path: "/api/datamanage/bond/m058hfrnrefe/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/bond/m058hfrnrefe", path: "/api/datamanage/bond/m058hfrnrefe/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
+  { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/deleteitemlist", method: "deleteItemList", session: "uncheck", type: "post",},
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
 // DRAM EXCHAGE  
   { file: "./datamanage/semi/semimaster", path: "/api/datamanage/semimaster/getitemlist", method: "getItemList", session: "uncheck", type: "get",},

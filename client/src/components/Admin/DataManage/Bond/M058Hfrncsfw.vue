@@ -22,6 +22,11 @@
                       >조회</v-btn
                     >
                   </v-flex>
+                  <v-flex xs12 md1>
+                    <v-btn color="warning" dark @click.stop="deleteList"
+                      >삭제</v-btn
+                    >
+                  </v-flex>
                 </v-layout>
                 <v-layout wrap>
                   <v-flex xs12>
@@ -133,6 +138,31 @@ export default {
               vm.itemList.push(tList[i]);
             }
             // console.log(vm.itemList)
+          }
+        });
+    },
+    deleteList: function () {
+      let vm = this;
+
+      // console.log("getList");
+      if(this.jcode.length != 12) {
+        alert("종목코드 12자리를 입력해야 됩니다.")
+        return;
+      }else if(this.itemList.length == 0) {
+        alert("데이터 조회후 삭제해야 됩니다.")
+        return;
+      }
+      axios
+        .post(Config.base_url + "/api/datamanage/bond/m058hfrncsfw/deleteitemlist", {
+            jcode: vm.jcode,
+        })
+        .then(function (response) {
+          // console.log(response.data);
+          if (response.data.success == false) {
+            alert(response.data.message);
+          } else {
+            alert("삭제가 완료 되었습니다.")
+            vm.itemList = [];
           }
         });
     },

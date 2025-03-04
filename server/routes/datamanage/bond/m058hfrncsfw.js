@@ -5,6 +5,7 @@
  * @author ThreeOn
  */
 const infoDb = require("../../common/asyncInfoDb");
+const clog = require("../../common/clog");
 
 let getItemList = async function (req, res) {
 	console.log(
@@ -26,6 +27,23 @@ let getItemList = async function (req, res) {
 	res.json({ success: true, results: result.resultList });
 };
 
+let deleteItemList = async function (req, res) {
+	console.log(
+		"/api/datamanage/bond/m058hfrncsfw/deleteitemlist : /datamanage/m058hfrncsfw 안에 있는 deleteItemList 호출됨."
+	);
+	let jcode = req.body.jcode;
+
+	let tstr = `DELETE
+    FROM DBSUPER.M058HFRNCSFW 
+    WHERE F16013 = '${jcode}'
+    `;
+
+	// console.log(tstr);
+	let result = await infoDb.run("xdb", tstr, 2);
+	console.log(result);
+	res.json({ success: true, results: result.resultList });
+};
+
 let excelUpload = async function (req, res) {
 	console.log(
 		"/api/datamanage/bond/m058hfrncsfw/excelupload : /datamanage/m058hfrncsfw 안에 있는 excelUpload 호출됨."
@@ -33,15 +51,18 @@ let excelUpload = async function (req, res) {
 
 	let param = req.body;
 	// console.log(param);
+  // clog.log("start....")
 	for (let i = 0; i < param.itemList.length; i++) {
 		let tobj = param.itemList[i];
 		let res = await insertXdbOne(tobj);
 
-		if (i % 200 == 0) {
-			console.log(` ${i} / ${param.itemList.length}`);
+    if (i % 20 == 0) {
+      
+			clog.log(` ${i} / ${param.itemList.length}`);
 		}
 		// if (i == 2) break;
 	}
+  // clog.log("end....")
 	// console.log(param);
 	res.json({ success: true, results: [] });
 	console.log(
@@ -139,5 +160,6 @@ let updateItem = async function (req, res) {
 */
 
 module.exports.getItemList = getItemList;
+module.exports.deleteItemList = deleteItemList;
 module.exports.excelUpload = excelUpload;
 // module.exports.updateItem = updateItem;
