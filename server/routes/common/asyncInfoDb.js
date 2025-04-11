@@ -30,18 +30,22 @@ async function run(mode, tstr, ctype) {
 
 	try {
 		const res = await axios.post(opts.url, querystring.stringify(opts.form));
-		// console.log(res.data);
-    if (ctype == 1) {
-      // 카멜
-    } else if (ctype == 2) {
-      // 카멜 --> snake
-      jsonKeySnakeCase(res.data.resultList);
-    } else {
-      // 카멜 --> 모두 대문자
-      jsonKeyUpperCase(res.data.resultList);
-    }
+    // console.log(res.data);
+    if (res.data.resultCode == 'fail') {
 
-		return res.data;
+    } else {
+      if (ctype == 1) {
+        // 카멜
+      } else if (ctype == 2) {
+        // 카멜 --> snake
+        jsonKeySnakeCase(res.data.resultList);
+      } else {
+        // 카멜 --> 모두 대문자
+        jsonKeyUpperCase(res.data.resultList);
+      }
+    }
+    return res.data;
+
 	} catch (error) {
 		console.log("[asyncInfoDb] tstr : " + tstr, error);
 		return { success: false, message: error };

@@ -202,6 +202,26 @@ export default {
           ],
         },
         {
+          action: "storage",
+          title: "정보_DB - 데이터 관리(ETF)",
+          active: false,
+          level: "NORMAL",
+          subitems: [
+            {
+              title: "001. M001_SKSETFEXPNINFO (업로드)",
+              link: "/admintool/etffeeupload",
+            },
+            {
+              title: "002. GLOBAL ETF DESC (수동번역)",
+              link: "/admintool/globaletfdesctrans",
+            },
+            {
+              title: "003. GLOBAL ETF DESC (수정)",
+              link: "/admintool/globaletfdesc",
+            },
+          ],
+        },
+        {
           action: "fence",
           title: "정보_DB - 플랫폼 이관",
           active: false,

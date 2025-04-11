@@ -25,6 +25,11 @@ import SemiInMod from "@/components/Admin/DataManage/Semi/SemiInMod.vue";
 import SemiIndexUpload from "@/components/Admin/DataManage/Semi/SemiIndexUpload.vue";
 import SemiIndexMod from "@/components/Admin/DataManage/Semi/SemiIndexMod.vue";
 
+// 정보 DB DATA MANAGE (ETF)
+import EtfFeeUpload from "@/components/Admin/DataManage/Etf/EtfFeeUpload.vue";
+import GlobalEtfDesc from "@/components/Admin/DataManage/Etf/GlobalEtfDesc.vue";
+import GlobalEtfDescTrans from "@/components/Admin/DataManage/Etf/GlobalEtfDescTrans.vue";
+
 // ETP DB DATA MANAGE
 import M054udate from "@/components/Admin/Migration/M054udate.vue";
 
@@ -64,6 +69,10 @@ export default [
       { path: "semiinmod", component: SemiInMod },
       { path: "semiindexupload", component: SemiIndexUpload },
       { path: "semiindexmod", component: SemiIndexMod },
+      // 정보DB DATA MANAGE(ETF)
+      { path: "etffeeupload", component: EtfFeeUpload },
+      { path: "globaletfdesc", component: GlobalEtfDesc },
+      { path: "globaletfdesctrans", component: GlobalEtfDescTrans },
       // MIGRATION
       { path: "migration/m054udate", component: M054udate },
       // ETP DB DATA MANAGE

@@ -15,7 +15,7 @@ module.exports = [
   { file: "./datamanage/worldindex", path: "/api/datamanage/worldindex/updateitem", method: "updateItem", session: "uncheck", type: "post",},
   { file: "./datamanage/worldindex", path: "/api/datamanage/worldindex/deleteitem", method: "deleteItem", session: "uncheck", type: "post",},
   { file: "./datamanage/worldindex", path: "/api/datamanage/worldindex/excelupload", method: "excelUpload", session: "uncheck", type: "post", },
-// 채권  
+// DATA MANAGE(채권)
   { file: "./datamanage/bond/bondindex", path: "/api/datamanage/bondindex/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/bond/bondindex", path: "/api/datamanage/bondindex/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
   { file: "./datamanage/bond/bondindex", path: "/api/datamanage/bondindex/updateitem", method: "updateItem", session: "uncheck", type: "post", },
@@ -26,6 +26,13 @@ module.exports = [
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/deleteitemlist", method: "deleteItemList", session: "uncheck", type: "post",},
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
+// DATA MANAGE(ETF)
+  { file: "./datamanage/etf/etffee", path: "/api/datamanage/etffee/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
+  { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
+  { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/updateitem", method: "updateItem", session: "uncheck", type: "post",},
+  { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/gettransitemlist", method: "getTransItemList", session: "uncheck", type: "get",},
+  // { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
+  { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/translate", method: "translate", session: "uncheck", type: "post",},
 // DRAM EXCHAGE  
   { file: "./datamanage/semi/semimaster", path: "/api/datamanage/semimaster/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/semi/semimaster", path: "/api/datamanage/semimaster/updateitem", method: "updateItem", session: "uncheck", type: "post",},
