@@ -105,7 +105,7 @@ const insertXdbOne = async function (dobj) {
 			'${dobj.OPR_FEE}', '${dobj.SALES_FEE}', '${dobj.ENTRUST_FEE}',
 			'${dobj.MANANGE_FEE}', '${dobj.SUM}', '${dobj.ETC_FEE}',
 			'${dobj.TER}', '${dobj.BROKERAGE_FEE}', '${dobj.TOTAL_FEE}'
-		))`;
+		)`;
 	}
   // console.log(tstr);
   res = await infoDb.run("xdb", tstr, 1);
