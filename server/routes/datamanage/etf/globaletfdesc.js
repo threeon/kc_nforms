@@ -16,16 +16,19 @@ let getItemList = async function (req, res) {
 
   let sseq = req.query.sseq;
   let eseq = req.query.eseq;
+  let scode = req.query.scode;
   
-	let tstr = `SELECT * FROM (SELECT A.*, ROWNUM AS RN
-    FROM DBSUPER.M169UMSOPER_INVSTRG A
-    ORDER BY MSTARID)
+	let tstr = `SELECT * FROM (SELECT A.*, B.SIMPLE_CODE, ROWNUM AS RN
+    FROM DBSUPER.M169UMSOPER_INVSTRG A, DBSUPER.M169UMSOPER B
+    WHERE A.MSTARID = B.MSTARID
+    AND B.SIMPLE_CODE LIKE '%${scode}%'
+    ORDER BY B.SIMPLE_CODE)
     WHERE RN BETWEEN ${sseq} AND ${eseq}
     `;
 
 	// console.log(tstr);
 	let result = await infoDb.run("hdb", tstr, 2);
-	// console.log(result);
+	console.log(result);
 	res.json({ success: true, results: result.resultList });
 	console.log("/datamanage/etf/globaletfdesc 안에 있는 getItemList 완료됨");
 };

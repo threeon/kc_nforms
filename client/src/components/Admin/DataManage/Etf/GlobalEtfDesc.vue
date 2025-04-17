@@ -19,6 +19,10 @@
                     <v-text-field 
                       v-model="eseq" label="END SEQ"></v-text-field>
                   </v-flex>
+                  <v-flex xs12 md2>
+                    <v-text-field 
+                      v-model="scode" label="SIMPLE CODE LIKE"></v-text-field>
+                  </v-flex>
                   <v-flex xs12 md4>
                     <v-btn color="primary" dark @click.stop="getList"
                       >조회</v-btn
@@ -34,6 +38,7 @@
                             <tr>
                               <th style="width: 2%">SEQ</th>
                               <th style="width: 5%">MSTARID</th>
+                              <th style="width: 5%">SIMPLE_CODE</th>
                               <th>INVSTRG_ENG</th>
                               <th>INVSTRG_KOR</th>
                               <th style="width: 5%">ACTION</th>
@@ -43,6 +48,7 @@
                             <tr v-for="(item, index) in itemList" :key="index">
                               <td>{{ item.seq }}</td>
                               <td>{{ item.MSTARID }}</td>
+                              <td>{{ item.SIMPLE_CODE }}</td>
                               <td>{{ item.INVSTRG_ENG }}</td>
                               <td>{{ item.INVSTRG_KOR }}</td>
                               <td>
@@ -81,6 +87,7 @@ export default {
     return {
       sseq : 1,
       eseq : 500,
+      scode : "", // search CODE
       itemList: [],
       updateFlag: false,
       editedItem: {},
@@ -110,7 +117,8 @@ export default {
         .get(Config.base_url + "/api/datamanage/globaletfdesc/getitemlist", {
           params: {
             sseq: vm.sseq,
-            eseq: vm.eseq
+            eseq: vm.eseq,
+            scode: vm.scode
           },
         })
         .then(function (response) {
@@ -127,6 +135,7 @@ export default {
               let item = {};
               item.seq = Number(vm.sseq) + i;
               item.MSTARID = tList[i].MSTARID;
+              item.SIMPLE_CODE = tList[i].SIMPLE_CODE;
               item.INVSTRG_ENG = tList[i].INVSTRG_ENG;
               item.INVSTRG_KOR = tList[i].INVSTRG_KOR;
               vm.itemList.push(item);
