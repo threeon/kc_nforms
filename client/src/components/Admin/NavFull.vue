@@ -148,6 +148,14 @@ export default {
               link: "/admintool/bond/m058hadre",
             },
             {
+              title: "003. M058HADRE (NEW) (업로드)",
+              link: "/admintool/bond/m058hadreuploadnew",
+            },
+            {
+              title: "004. M058HADRE (NEW) (조회)",
+              link: "/admintool/bond/m058hadrenew",
+            },
+            {
               title: "005. M058HFRNREFE (업로드)",
               link: "/admintool/bond/m058hfrnrefeupload",
             },

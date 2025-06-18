@@ -12,6 +12,8 @@ import BondIndexUpload from "@/components/Admin/DataManage/Bond/BondIndexUpload.
 import BondIndexMod from "@/components/Admin/DataManage/Bond/BondIndexMod.vue";
 import M058HadreUpload from "@/components/Admin/DataManage/Bond/M058HadreUpload.vue";
 import M058Hadre from "@/components/Admin/DataManage/Bond/M058Hadre.vue";
+import M058HadreUploadNew from "@/components/Admin/DataManage/Bond/M058HadreUploadNew.vue";
+import M058HadreNew from "@/components/Admin/DataManage/Bond/M058HadreNew.vue";
 import M058HfrnrefeUpload from "@/components/Admin/DataManage/Bond/M058HfrnrefeUpload.vue";
 import M058Hfrnrefe from "@/components/Admin/DataManage/Bond/M058Hfrnrefe.vue";
 import M058HfrncsfwUpload from "@/components/Admin/DataManage/Bond/M058HfrncsfwUpload.vue";
@@ -58,6 +60,8 @@ export default [
       { path: "bond/bondindexmod", component: BondIndexMod },
       { path: "bond/m058hadreupload", component: M058HadreUpload },
       { path: "bond/m058hadre", component: M058Hadre },
+      { path: "bond/m058hadreuploadnew", component: M058HadreUploadNew },
+      { path: "bond/m058hadrenew", component: M058HadreNew },
       { path: "bond/m058hfrnrefeupload", component: M058HfrnrefeUpload },
       { path: "bond/m058hfrnrefe", component: M058Hfrnrefe },
       { path: "bond/m058hfrncsfwupload", component: M058HfrncsfwUpload },

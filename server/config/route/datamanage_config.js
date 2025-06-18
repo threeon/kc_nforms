@@ -21,6 +21,8 @@ module.exports = [
   { file: "./datamanage/bond/bondindex", path: "/api/datamanage/bondindex/updateitem", method: "updateItem", session: "uncheck", type: "post", },
   { file: "./datamanage/bond/m058hadre", path: "/api/datamanage/bond/m058hadre/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/bond/m058hadre", path: "/api/datamanage/bond/m058hadre/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
+  { file: "./datamanage/bond/m058hadre_new", path: "/api/datamanage/bond/m058hadrenew/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
+  { file: "./datamanage/bond/m058hadre_new", path: "/api/datamanage/bond/m058hadrenew/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
   { file: "./datamanage/bond/m058hfrnrefe", path: "/api/datamanage/bond/m058hfrnrefe/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/bond/m058hfrnrefe", path: "/api/datamanage/bond/m058hfrnrefe/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
