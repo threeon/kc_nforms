@@ -46,8 +46,6 @@
                               <th>F16013</th>
                               <th>F35254</th>
                               <th>F35255</th>
-                              <th>F35256</th>
-                              <th>F35257</th>
                               <th>F35258</th>
                               <th>F35259</th>
                               <th>F35260</th>
@@ -56,6 +54,8 @@
                               <th>F35263</th>
                               <th>F35264</th>
                               <th>F35265</th>
+                              <th>F35256</th>
+                              <th>F35257</th>
                               <th>F35266</th>
                             </tr>
                           </thead>
@@ -64,8 +64,6 @@
                               <td>{{ item.F16013 }}</td>
                               <td>{{ item.F35254 }}</td>
                               <td>{{ item.F35255 }}</td>
-                              <td>{{ item.F35256 }}</td>
-                              <td>{{ item.F35257 }}</td>
                               <td>{{ item.F35258 }}</td>
                               <td>{{ item.F35259 }}</td>
                               <td>{{ item.F35260 }}</td>
@@ -74,6 +72,8 @@
                               <td>{{ item.F35263 }}</td>
                               <td>{{ item.F35264 }}</td>
                               <td>{{ item.F35265 }}</td>
+                              <td>{{ item.F35256 }}</td>
+                              <td>{{ item.F35257 }}</td>
                               <td>{{ item.F35266 }}</td>
                             </tr>
                           </tbody>
@@ -152,13 +152,14 @@ export default {
             F35265 : "",
             F35266 : "",
           };
+          // console.log("------------------------------------");
           // console.log(toJson);
           for (let j = 0; j < Object.keys(toJson[i]).length; j++) {
-            tobj[Object.keys(tobj)[j]] = (
+            tobj[Object.keys(toJson[i])[j]] = (
               "" + toJson[i][Object.keys(toJson[i])[j]]
             ).trim();
 
-            // console.log("["+j+"] " + Object.keys(tobj)[j]);
+            // console.log("["+j+"] " + Object.keys(toJson[i])[j]);
             // console.log("["+j+"] " + toJson[i][Object.keys(toJson[i])[j]]);
           }
           vm.itemList.push(tobj);

@@ -139,6 +139,7 @@ export default {
               title: "002. 채권지수 소급 (수정)",
               link: "/admintool/bond/bondindexmod",
             },
+            /*
             {
               title: "003. M058HADRE (업로드)",
               link: "/admintool/bond/m058hadreupload",
@@ -147,6 +148,7 @@ export default {
               title: "004. M058HADRE (조회)",
               link: "/admintool/bond/m058hadre",
             },
+            */
             {
               title: "003. M058HADRE (NEW) (업로드)",
               link: "/admintool/bond/m058hadreuploadnew",
