@@ -29,7 +29,8 @@ module.exports = [
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/deleteitemlist", method: "deleteItemList", session: "uncheck", type: "post",},
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
 // DATA MANAGE(ETF)
-  { file: "./datamanage/etf/etffee", path: "/api/datamanage/etffee/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
+  { file: "./datamanage/etf/etffee", path: "/api/datamanage/etffee/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
+  { file: "./datamanage/etf/etffee", path: "/api/datamanage/etffee/excelupload", method: "excelUpload", session: "uncheck", type: "post", },
   { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/updateitem", method: "updateItem", session: "uncheck", type: "post",},
   { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/gettransitemlist", method: "getTransItemList", session: "uncheck", type: "get",},
