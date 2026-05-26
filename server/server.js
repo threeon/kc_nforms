@@ -29,8 +29,9 @@ var flash = require("connect-flash");
 
 // 모듈로 분리한 설정 파일 불러오기
 var config = require("./config/config");
+
 // 모듈로 분리한 설정 파일 불러오기
-// var cron = require('./config/cron_scheduler');
+var cron = require('./cron/cron_scheduler');
 
 // 모듈로 분리한 라우팅 파일 불러오기
 var route_loader = require("./routes/route_loader");
@@ -40,6 +41,8 @@ const Pool = require("./database/pool");
 const pool = new Pool();
 const Pool_kcetp = require("./database/pool_kcetp");
 const pool_kcetp = new Pool_kcetp();
+const Pool_kccrm = require("./database/pool_kccrm");
+const pool_kccrm = new Pool_kccrm ();
 const Pool_dpstock = require("./database/pool_dpstock");
 const pool_dpstock = new Pool_dpstock();
 const Pool_dpbond = require("./database/pool_dpbond");
@@ -60,6 +63,8 @@ app.set("pool", pool);
 app.set("mapper", pool.getMapper());
 app.set("pool_kcetp", pool_kcetp);
 app.set("mapper_kcetp", pool_kcetp.getMapper());
+app.set("pool_kccrm", pool_kccrm);
+app.set("mapper_kccrm", pool_kccrm.getMapper());
 app.set("pool_dpstock", pool_dpstock);
 app.set("mapper_dpstock", pool_dpstock.getMapper());
 app.set("pool_dpext", pool_dpext);
@@ -168,7 +173,7 @@ app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
 
 // cron 작업 등록
-// cron.init(app);
+cron.init(app);
 
 //20230310 환경변수 server/.env 읽어 들임(dotenv 모듈 필요)
 //require("dotenv").config({ path: '../../.env' });
@@ -200,8 +205,10 @@ app.on("close", function () {
 });
 
 // 시작된 서버 객체를 리턴받도록 합니다.
+var nDate = new Date();
+
 var server = http
 	.createServer(app)
 	.listen(app.get("port"), function (req, res) {
-		console.log("서버가 시작되었습니다. 포트 : " + app.get("port"));
+		console.log("서버가 시작되었습니다. 포트 : " + app.get("port") + " " + nDate);
 	});

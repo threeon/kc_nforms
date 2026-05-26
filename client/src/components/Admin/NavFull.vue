@@ -232,6 +232,22 @@ export default {
           ],
         },
         {
+          action: "storage",
+          title: "정보_DB - 데이터 관리(CRM)",
+          active: false,
+          level: "NORMAL",
+          subitems: [
+            {
+              title: "001. TN_GOODS (이전)",
+              link: "/admintool/tngoods",
+            },
+            {
+              title: "002. TN_GOODS_USER (이전)",
+              link: "/admintool/tngoodsuser",
+            },
+          ],
+        },
+        {
           action: "fence",
           title: "정보_DB - 플랫폼 이관",
           active: false,

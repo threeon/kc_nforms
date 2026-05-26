@@ -32,6 +32,8 @@ async function run(mode, tstr, ctype) {
 		const res = await axios.post(opts.url, querystring.stringify(opts.form));
     // console.log(res.data);
     if (res.data.resultCode == 'fail') {
+      console.log(tstr);
+      console.log("[asyncInfoDb] error : ", res.data);
 
     } else {
       if (ctype == 1) {

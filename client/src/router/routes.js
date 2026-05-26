@@ -32,6 +32,10 @@ import EtfFeeUpload from "@/components/Admin/DataManage/Etf/EtfFeeUpload.vue";
 import GlobalEtfDesc from "@/components/Admin/DataManage/Etf/GlobalEtfDesc.vue";
 import GlobalEtfDescTrans from "@/components/Admin/DataManage/Etf/GlobalEtfDescTrans.vue";
 
+// 정보 DB DATA MANAGE (CRM)
+import TnGoods from "@/components/Admin/DataManage/Crm/TnGoods.vue";
+import TnGoodsUser from "@/components/Admin/DataManage/Crm/TnGoodsUser.vue";
+
 // ETP DB DATA MANAGE
 import M054udate from "@/components/Admin/Migration/M054udate.vue";
 
@@ -77,6 +81,9 @@ export default [
       { path: "etffeeupload", component: EtfFeeUpload },
       { path: "globaletfdesc", component: GlobalEtfDesc },
       { path: "globaletfdesctrans", component: GlobalEtfDescTrans },
+      // 정보DB DATA MANAGE(CRM)
+      { path: "tngoods", component: TnGoods },
+      { path: "tngoodsuser", component: TnGoodsUser },
       // MIGRATION
       { path: "migration/m054udate", component: M054udate },
       // ETP DB DATA MANAGE

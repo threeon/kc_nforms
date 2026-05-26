@@ -22,6 +22,14 @@ module.exports = {
 		database: "kc_etp",
 		format: { language: "sql", indent: "" },
 	},
+	KC_CRM: {
+		host: "103.244.108.184",
+		port: 7999,
+		user: "kc_crm",
+		password: "kc_crm",
+		database: "kc_crm",
+		format: { language: "sql", indent: "" },
+	},
 	DP_STOCK: {
 		host: "221.168.36.28",
 		port: 7999,

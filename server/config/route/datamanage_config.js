@@ -29,13 +29,20 @@ module.exports = [
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/deleteitemlist", method: "deleteItemList", session: "uncheck", type: "post",},
   { file: "./datamanage/bond/m058hfrncsfw", path: "/api/datamanage/bond/m058hfrncsfw/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
 // DATA MANAGE(ETF)
-  { file: "./datamanage/etf/etffee", path: "/api/datamanage/etffee/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
+  // { file: "./datamanage/etf/etffee", path: "/api/datamanage/etffee/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/etf/etffee", path: "/api/datamanage/etffee/excelupload", method: "excelUpload", session: "uncheck", type: "post", },
   { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/updateitem", method: "updateItem", session: "uncheck", type: "post",},
   { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/gettransitemlist", method: "getTransItemList", session: "uncheck", type: "get",},
   // { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
   { file: "./datamanage/etf/globaletfdesc", path: "/api/datamanage/globaletfdesc/translate", method: "translate", session: "uncheck", type: "post",},
+// DATA MANAGE(CRM)
+  { file: "./datamanage/crm/tngoods", path: "/api/datamanage/crm/gettngoodslist", method: "getTnGoodsList", session: "uncheck", type: "get",},
+  { file: "./datamanage/crm/tngoods", path: "/api/datamanage/crm/deletetngoodslist", method: "deleteTnGoodsList", session: "uncheck", type: "post",},
+  { file: "./datamanage/crm/tngoods", path: "/api/datamanage/crm/movetngoodslist", method: "moveTnGoodsList", session: "uncheck", type: "post",},
+  { file: "./datamanage/crm/tngoodsuser", path: "/api/datamanage/crm/gettngoodsuserlist", method: "getTnGoodsUserList", session: "uncheck", type: "get",},
+  { file: "./datamanage/crm/tngoodsuser", path: "/api/datamanage/crm/deletetngoodsuserlist", method: "deleteTnGoodsUserList", session: "uncheck", type: "post",},
+  { file: "./datamanage/crm/tngoodsuser", path: "/api/datamanage/crm/movetngoodsuserlist", method: "moveTnGoodsUserList", session: "uncheck", type: "post",},
 // DRAM EXCHAGE  
   { file: "./datamanage/semi/semimaster", path: "/api/datamanage/semimaster/getitemlist", method: "getItemList", session: "uncheck", type: "get",},
   { file: "./datamanage/semi/semimaster", path: "/api/datamanage/semimaster/updateitem", method: "updateItem", session: "uncheck", type: "post",},
@@ -50,3 +57,4 @@ module.exports = [
   { file: "./datamanage/semi/semiindex", path: "/api/datamanage/semiindex/deleteitem", method: "deleteItem", session: "uncheck", type: "post",},
   { file: "./datamanage/semi/semiindex", path: "/api/datamanage/semiindex/excelupload", method: "excelUpload", session: "uncheck", type: "post",},
 ];
+

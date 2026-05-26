@@ -36,7 +36,9 @@ route_loader.sessionCheckRegister = function (app) {
 					next(error);
 				}
 			});
-		}
+    } else {
+      console.log(req);
+    }
 	}
 };
 

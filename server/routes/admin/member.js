@@ -8,7 +8,7 @@ var Promise = require("bluebird");
 const config = require('../../database/mysql_config');
 
 var getMemberList = function(req, res) {
-  console.log('member 모듈 안에 있는 checkLogin 호출됨.');
+  console.log('member 모듈 안에 있는 checkLogin 호출됨1111.');
 
   var pool = req.app.get("pool");
   var mapper = req.app.get("mapper");
