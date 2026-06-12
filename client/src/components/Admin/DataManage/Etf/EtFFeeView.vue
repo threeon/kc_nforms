@@ -16,6 +16,7 @@
                   </v-flex>
                   <v-flex xs12 md4>
                     <v-btn color="primary" dark @click.stop="clickInfo">조회</v-btn>
+                    <v-btn color="green" dark @click.stop="downloadExcel">엑셀 다운로드</v-btn>
                   </v-flex>
                 </v-layout>
                 <v-layout wrap>
@@ -132,6 +133,23 @@ export default {
       this.edate = this.yyyymm + '32'
       // console.log(this.yyyymm)
       this.getList()
+    },
+    downloadExcel: function () {
+      if (this.itemList.length > 0) {
+        const xlsx = require('xlsx')
+        // 엑셀 워크시트로 json 내보내기, 배열만 가능
+        const dataWS = xlsx.utils.json_to_sheet(this.itemList)
+        // 엑셀의 workbook(엑셀파일에 지정된 이름)을 만든다
+        const wb = xlsx.utils.book_new()
+        // workbook에 워크시트 추가, 시트명은 'peopleData'
+        xlsx.utils.book_append_sheet(wb, dataWS, 'nforms')
+        // 엑셀 파일을 내보낸다. 엑셀 파일 저장명은 'people.xlsx'
+        const filename = 'M001_SKSETFEXPNINFO.xlsx'
+        xlsx.writeFile(wb, filename)
+        alert('다운로드가 완료되었습니다.')
+      } else {
+        alert('데이터를 조회한 이후 다운로드가 가능합니다.')
+      }
     },
   },
 }
