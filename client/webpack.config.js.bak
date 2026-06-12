@@ -1,12 +1,11 @@
 var path = require('path')
 var webpack = require('webpack')
-var TerserPlugin = require('terser-webpack-plugin')
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
-const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   mode: process.env.NODE_ENV,
+  //   entry: './src/main.js',
   plugins: [
     new webpack.ProvidePlugin({
       'window.Quill': 'quill/dist/quill.js',
@@ -24,11 +23,19 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          // 'vue-style-loader',
+          'style-loader',
+          'css-loader',
+        ],
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        options: {
+          loaders: {},
+          // other vue-loader options go here
+        },
       },
       {
         test: /\.js$/,
@@ -37,14 +44,15 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            cacheDirectory: true, // babel 캐시
           },
         },
       },
       {
         test: /\.(png|jpg|gif|svg|eot|woff|woff2|ttf)$/,
         loader: 'file-loader',
-        options: { name: '[name].[ext]?[hash]' },
+        options: {
+          name: '[name].[ext]?[hash]',
+        },
       },
     ],
   },
@@ -53,36 +61,45 @@ module.exports = {
       vue$: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, 'src'),
     },
-    extensions: ['.js', '.vue', '.json'], // "*" 제거
+    extensions: ['*', '.js', '.vue', '.json'],
   },
   devServer: {
     historyApiFallback: true,
     noInfo: true,
     overlay: true,
   },
-  performance: { hints: false },
-  // dev는 빠른 소스맵, prod는 소스맵 OFF
-  devtool: isProd ? false : 'eval-cheap-module-source-map',
-
-  optimization: isProd
-    ? {
-        minimizer: [
-          new TerserPlugin({
-            parallel: true, // 멀티코어 병렬
-            terserOptions: {
-              compress: { warnings: false },
-              output: { comments: false },
-            },
-          }),
-        ],
-      }
-    : {},
+  performance: {
+    hints: false,
+  },
+  devtool: '#eval-source-map',
 }
 
-if (isProd) {
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map'
+  // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: '"production"' },
+      'process.env': {
+        NODE_ENV: '"production"',
+      },
+    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //     sourceMap: true,
+    //     compress: {
+    //         warnings: false
+    //     }
+    // }),
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false,
+        },
+      },
+      sourceMap: true,
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
     }),
   ])
 }
